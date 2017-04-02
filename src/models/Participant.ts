@@ -1,5 +1,7 @@
 import Class from "jwidget/Class";
 
+import {GOODGAME_HOSTNAME} from "../constants";
+
 export default class Participant extends Class {
 	id: number;
 	checkin: boolean;
@@ -16,6 +18,10 @@ export default class Participant extends Class {
 		this.avatar = config.avatar;
 		this.contact = config.contact;
 		this.rating = config.rating;
+	}
+
+	get link() {
+		return GOODGAME_HOSTNAME + "/user/" + this.id;
 	}
 
 	static createByJson(json: any) {

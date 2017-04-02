@@ -9,11 +9,11 @@ export default class Header extends Component {
 		super();
 	}
 
-	renderTitle(el: JQuery) {
+	protected renderTitle(el: JQuery) {
 		el.text(this.column.fullTitle);
 	}
 
-	renderHide(el: JQuery) {
+	protected renderHide(el: JQuery) {
 		el.click((e) => {
 			e.preventDefault();
 		});

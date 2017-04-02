@@ -3,6 +3,7 @@ import template from "jwidget/template";
 
 import Cup from "../models/Cup";
 
+import Grid from "./Grid";
 import Headers from "./Headers";
 
 @template(require<string>("./Application.jw.html"))
@@ -11,15 +12,15 @@ export default class Application extends Component {
 		super();
 	}
 
-	renderToolbar() {
+	protected renderToolbar() {
 		return false;
 	}
 
-	renderHeaders() {
+	protected renderHeaders() {
 		return this.own(new Headers(this.cup));
 	}
 
-	renderGrid() {
-		return false;
+	protected renderGrid() {
+		return this.own(new Grid(this.cup));
 	}
 }
