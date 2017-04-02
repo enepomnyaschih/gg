@@ -24,7 +24,8 @@ export default class MatchView extends Component {
 			this.lineBegin =
 				(this.match.winner === 0) ? -WINNER_LINE_OFFSET :
 				(this.match.winner === 1) ? WINNER_LINE_OFFSET : 0;
-			this.lineEnd = this.match.next.verticalPosition - this.match.verticalPosition - AVATAR_SIZE / 2 +
+			this.lineEnd = this.match.next.verticalPosition - this.match.verticalPosition -
+				(AVATAR_SIZE + PLAYER_BOTTOM_MARGIN) / 2 +
 				this.match.nextPosition * (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN);
 		}
 	}
@@ -49,6 +50,11 @@ export default class MatchView extends Component {
 
 	protected renderLine2(el: JQuery) {
 		el.css("top", this.lineEnd + "px");
+	}
+
+	protected renderLine3(el: JQuery) {
+		el.css("height", Math.abs(this.lineEnd - this.lineBegin) + "px");
+		el.css("top", Math.min(this.lineEnd, this.lineBegin) + "px");
 	}
 
 	private getPlayer(index: number): Component {
