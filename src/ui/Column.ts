@@ -11,7 +11,7 @@ export default class ColumnView extends Component {
 	}
 
 	renderRoot(el: JQuery) {
-		el.addClass("gg-column");
+		el.addClass("gg-column").css("padding-top", this.column.offset + "px");
 		return this.own(mapDestroyableArray(this.column.matches, (match) => new Match(match)));
 	}
 }

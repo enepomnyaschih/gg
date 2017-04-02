@@ -11,7 +11,10 @@ export default class MatchView extends Component {
 		super();
 	}
 
-	protected renderRoot() {
+	protected renderRoot(el: JQuery) {
+		if (this.match.index !== 0) {
+			el.css("padding-top", this.match.column.gap + "px");
+		}
 		return this.own(new JWArray([this.getPlayer(0), this.getPlayer(1)])).ownItems();
 	}
 

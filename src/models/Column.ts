@@ -6,6 +6,8 @@ import Cup from "./Cup";
 import Match from "./Match";
 import Participant from "./Participant";
 
+import {MATCH_GAP, MATCH_HEIGHT} from "../constants";
+
 export default class Column extends Class {
 	index: number;
 	cup: Cup;
@@ -38,6 +40,14 @@ export default class Column extends Class {
 
 	get prev() {
 		return this.cup.grid.get(this.index - 1);
+	}
+
+	get offset() {
+		return this.gap / 2;
+	}
+
+	get gap() {
+		return Math.pow(2, this.index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 	}
 
 	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>) {
