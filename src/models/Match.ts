@@ -6,6 +6,8 @@ import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
+import {MATCH_HEIGHT} from "../constants";
+
 export default class Match extends Class {
 	id: number;
 	index: number;
@@ -32,7 +34,8 @@ export default class Match extends Class {
 	}
 
 	get next() {
-		return this.column.next.matches.get(Math.floor(this.index / 2));
+		const nextColumn = this.column.next;
+		return nextColumn ? nextColumn.matches.get(Math.floor(this.index / 2)) : null;
 	}
 
 	get nextPosition() {
@@ -41,6 +44,10 @@ export default class Match extends Class {
 
 	get winnerPlayer() {
 		return (this.winner != null) ? this.players[this.winner] : null;
+	}
+
+	get verticalPosition() {
+		return this.index * (MATCH_HEIGHT + this.column.gap) + this.column.offset;
 	}
 
 	static createByJson(json: any, column: Column, index: number, participants: Dictionary<Participant>) {

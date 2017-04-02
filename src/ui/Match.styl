@@ -5,13 +5,17 @@
 
 	&-lines
 		position absolute
-		right 0
+		right (gg-column-line-width / 2)
 		size 0 0
-		top (gg-player-bottom-margin / 2) + gg-avatar-size
+		top (gg-player-bottom-margin / 2) + gg-avatar-size - (gg-column-line-width / 2)
 
 	&-line1
-		border-bottom gg-column-line-width solid gg-column-line-color
+	&-line2
+		border (gg-column-line-width / 2) solid gg-column-line-color
+		border-radius (gg-column-line-width / 2)
 		height 0
-		margin-top -(gg-column-line-width / 2)
 		position absolute
 		width gg-column-gap-1
+
+	&-line2
+		left gg-column-gap-2
