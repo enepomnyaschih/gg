@@ -18,7 +18,15 @@ export default class Column extends Class {
 	}
 
 	get title() {
-		return "1/" + this.matches.getLength() + ", bo" + this.bo;
+		switch (this.matches.getLength()) {
+			case 1: return "Финал";
+			case 2: return "Полуфинал";
+			default: return "1/" + this.matches.getLength();
+		}
+	}
+
+	get fullTitle() {
+		return this.title + ", Bo" + this.bo;
 	}
 
 	static createByJson(json: any, index: number, participants: Dictionary<Participant>) {

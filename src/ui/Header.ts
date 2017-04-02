@@ -10,7 +10,7 @@ export default class Header extends Component {
 	}
 
 	renderTitle(el: JQuery) {
-		el.text(this.column.title);
+		el.text(this.column.fullTitle);
 	}
 
 	renderHide(el: JQuery) {

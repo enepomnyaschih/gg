@@ -16,10 +16,10 @@ export default class Application extends Component {
 	}
 
 	renderHeaders() {
-		return false;
+		return this.own(new Headers(this.cup));
 	}
 
 	renderGrid() {
-		return this.own(new Headers(this.cup));
+		return false;
 	}
 }
