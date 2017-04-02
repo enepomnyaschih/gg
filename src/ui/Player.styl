@@ -1,15 +1,14 @@
 @import "imports"
 
 .gg-player
-	border-size = 4px
 	score-size = 20px
 
 	background-color #1c2644
 	border-radius 2px
-	border-right 4px solid #52709c
+	border-right gg-column-line-width solid gg-column-line-color
 	height gg-avatar-size
 	line-height gg-avatar-size
-	margin-bottom 2px
+	margin-bottom gg-player-bottom-margin
 
 	&-avatar
 	&-name
@@ -30,7 +29,7 @@
 		overflow hidden
 		text-overflow ellipsis
 		white-space nowrap
-		width gg-column-width - gg-avatar-size - score-size - border-size - 1px
+		width gg-column-width - gg-avatar-size - score-size - gg-column-line-width - 1px
 
 	&-score
 		width score-size

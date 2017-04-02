@@ -5,3 +5,4 @@ export const AVATAR_SIZE = 30;
 export const PLAYER_BOTTOM_MARGIN = 2;
 export const MATCH_HEIGHT = (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN) * 2;
 export const MATCH_GAP = 20;
+export const WINNER_LINE_OFFSET = 8;

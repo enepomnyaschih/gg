@@ -27,8 +27,8 @@ export default class Match extends Class {
 		this.opened = config.opened;
 
 		this.winner =
-			(this.score[0] >= this.column.bo) ? 0 :
-			(this.score[1] >= this.column.bo) ? 1 : null;
+			(!this.players[1] || this.score[0] >= this.column.bo) ? 0 :
+			(!this.players[0] || this.score[1] >= this.column.bo) ? 1 : null;
 	}
 
 	get next() {
