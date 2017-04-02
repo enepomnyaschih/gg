@@ -1,4 +1,4 @@
-# Project Manager for JIRA
+# Турнирная сетка для GoodGame.ru
 
 ## Installation
 
