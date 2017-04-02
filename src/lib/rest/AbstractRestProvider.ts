@@ -69,7 +69,7 @@ abstract class AbstractRestProvider<C> {
 			type: type,
 			headers: this.getHeaders(config),
 			contentType: contentType,
-			data: (contentType === "application/json") ? JSON.stringify(data) : data
+			data: (contentType === "application/json" && data != null) ? JSON.stringify(data) : data
 		});
 		return new RestRequest<T>($.ajax(settings), factory);
 	}
