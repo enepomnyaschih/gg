@@ -3,6 +3,8 @@ import template from "jwidget/template";
 
 import Cup from "../models/Cup";
 
+import Headers from "./Headers";
+
 @template(require<string>("./Application.jw.html"))
 export default class Application extends Component {
 	constructor(private cup: Cup) {
@@ -18,7 +20,6 @@ export default class Application extends Component {
 	}
 
 	renderGrid() {
-		console.log(this.cup);
-		return false;
+		return this.own(new Headers(this.cup));
 	}
 }

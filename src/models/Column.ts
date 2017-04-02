@@ -17,6 +17,10 @@ export default class Column extends Class {
 		this.bo = config.bo;
 	}
 
+	get title() {
+		return "1/" + this.matches.getLength() + ", bo" + this.bo;
+	}
+
 	static createByJson(json: any, index: number, participants: Dictionary<Participant>) {
 		return new Column({
 			index: index,
