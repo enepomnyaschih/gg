@@ -1,0 +1,8 @@
+{
+  "name": "bbb-pm",
+  "private": true,
+  "dependencies": {
+    "jquery": "*",
+    "lodash": "^4.17.4"
+  }
+}
