@@ -8,6 +8,9 @@ import Headers from "./Headers";
 
 @template(require<string>("./Application.jw.html"))
 export default class Application extends Component {
+	private headers: Headers;
+	private grid: Grid;
+
 	constructor(private cup: Cup) {
 		super();
 	}
@@ -17,10 +20,20 @@ export default class Application extends Component {
 	}
 
 	protected renderHeaders() {
-		return this.own(new Headers(this.cup));
+		return this.headers = this.own(new Headers(this.cup));
 	}
 
 	protected renderGrid() {
-		return this.own(new Grid(this.cup));
+		return this.grid = this.own(new Grid(this.cup));
+	}
+
+	protected afterAppend() {
+		super.afterAppend();
+		this.syncScroll();
+		this.grid.el.scroll(() => this.syncScroll());
+	}
+
+	private syncScroll() {
+		this.headers.el.scrollLeft(this.grid.el.scrollLeft());
 	}
 }

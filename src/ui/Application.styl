@@ -5,6 +5,11 @@ html
 	color white
 	font-family sans-serif
 	font-size 14px
+	height 100%
+	overflow hidden
+
+body
+	height 100%
 
 a
 	&
@@ -13,12 +18,22 @@ a
 		color gg-link-color
 
 .gg-application
-	padding 20px
+	header-height = 70px
+
+	height 100%
 
 	&-headers
+		box-sizing border-box
 		font-size 18px
-		padding-bottom 20px
+		height header-height
+		overflow hidden
+		padding 20px
+		padding-right 100px /* hack for proper scrolling */
 		white-space nowrap
 
 	&-grid
+		box-sizing border-box
+		height "calc(100% - %s)" % header-height
+		overflow auto
+		padding 20px
 		white-space nowrap
