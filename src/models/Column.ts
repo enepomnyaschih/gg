@@ -50,6 +50,10 @@ export default class Column extends Class {
 		return Math.pow(2, this.index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 	}
 
+	get maxScore() {
+		return (this.bo + 1) / 2;
+	}
+
 	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>) {
 		const column = new Column({
 			index: index,
