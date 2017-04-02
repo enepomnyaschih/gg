@@ -44,7 +44,7 @@ export default class Cup extends Class {
 		const cupJson = json["cup"];
 		const participantArray = (<any[]>cupJson["participants"]).map(Participant.createByJson);
 		const participants = ArrayUtils.index(participantArray, (participant) => participant.id);
-		return new Cup({
+		const cup = new Cup({
 			id: cupJson["id"],
 			started: cupJson["started"],
 			logo: cupJson["logo"],
@@ -56,9 +56,10 @@ export default class Cup extends Class {
 			description: cupJson["description"],
 			finalbo: +cupJson["finalbo"],
 			creatorHtml: cupJson["creator"],
-			gridType: cupJson["grid_type"],
-			grid: (<any[]>json["grid"]).map((json, index) => Column.createByJson(json, index, participants))
+			gridType: cupJson["grid_type"]
 		});
+		cup.grid.addAll((<any[]>json["grid"]).map((json, index) => Column.createByJson(json, index, cup, participants)))
+		return cup;
 	}
 }
 
@@ -75,5 +76,5 @@ export interface CupConfig {
 	finalbo: number;
 	creatorHtml: string;
 	gridType: number;
-	grid: Column[];
+	grid?: Column[];
 }

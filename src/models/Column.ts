@@ -2,17 +2,20 @@ import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
 import JWArray from "jwidget/JWArray";
 
+import Cup from "./Cup";
 import Match from "./Match";
 import Participant from "./Participant";
 
 export default class Column extends Class {
 	index: number;
+	cup: Cup;
 	matches: JWArray<Match>;
 	bo: number;
 
 	constructor(config: ColumnConfig) {
 		super();
 		this.index = config.index;
+		this.cup = config.cup;
 		this.matches = new JWArray(config.matches);
 		this.bo = config.bo;
 	}
@@ -29,17 +32,28 @@ export default class Column extends Class {
 		return this.title + ", Bo" + this.bo;
 	}
 
-	static createByJson(json: any, index: number, participants: Dictionary<Participant>) {
-		return new Column({
+	get next() {
+		return this.cup.grid.get(this.index + 1);
+	}
+
+	get prev() {
+		return this.cup.grid.get(this.index - 1);
+	}
+
+	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>) {
+		const column = new Column({
 			index: index,
-			matches: (<any[]>json["matches"]).map((json) => Match.createByJson(json, participants)),
+			cup: cup,
 			bo: +json["bo"]
 		});
+		column.matches.addAll((<any[]>json["matches"]).map((json, index) => Match.createByJson(json, column, index, participants)));
+		return column;
 	}
 }
 
 export interface ColumnConfig {
 	index: number;
-	matches: Match[];
+	cup: Cup;
+	matches?: Match[];
 	bo: number;
 }

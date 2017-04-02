@@ -1,29 +1,53 @@
 import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
 
+import Column from "./Column";
 import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
 export default class Match extends Class {
 	id: number;
+	index: number;
+	column: Column;
 	closed: boolean;
 	players: Participant[]; // 2 values
 	score: number[]; // 2 values
 	opened: Date;
+	winner: number; // null if not yet closed
 
 	constructor(config: MatchConfig) {
 		super();
 		this.id = config.id;
+		this.index = config.index;
+		this.column = config.column;
 		this.closed = config.closed;
 		this.players = config.players;
 		this.score = config.score;
 		this.opened = config.opened;
+
+		this.winner =
+			(this.score[0] >= this.column.bo) ? 0 :
+			(this.score[1] >= this.column.bo) ? 1 : null;
 	}
 
-	static createByJson(json: any, participants: Dictionary<Participant>) {
+	get next() {
+		return this.column.next.matches.get(Math.floor(this.index / 2));
+	}
+
+	get nextPosition() {
+		return this.index % 2;
+	}
+
+	get winnerPlayer() {
+		return (this.winner != null) ? this.players[this.winner] : null;
+	}
+
+	static createByJson(json: any, column: Column, index: number, participants: Dictionary<Participant>) {
 		return new Match({
 			id: +json["dbid"],
+			index: index,
+			column: column,
 			closed: json["closed"],
 			players: [
 				participants[json["_players"][0]],
@@ -37,6 +61,8 @@ export default class Match extends Class {
 
 export interface MatchConfig {
 	id: number;
+	index: number;
+	column: Column;
 	closed: boolean;
 	players: Participant[]; // 2 values
 	score: number[]; // 2 values
