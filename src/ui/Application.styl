@@ -19,21 +19,29 @@ a
 
 .gg-application
 	header-height = 70px
+	header-padding = 20px
 
 	height 100%
 
+	&-toolbar
 	&-headers
 		box-sizing border-box
+		padding header-padding
+		padding-bottom 0
+		white-space nowrap
+
+	&-toolbar
+		height header-height - header-padding
+
+	&-headers
 		font-size 18px
 		height header-height
 		overflow hidden
-		padding 20px
 		padding-right 100px /* hack for proper scrolling */
-		white-space nowrap
 
 	&-grid
 		box-sizing border-box
-		height "calc(100% - %s)" % header-height
+		height "calc(100% - %s)" % (2 * header-height - header-padding)
 		overflow auto
 		padding 20px
 		white-space nowrap

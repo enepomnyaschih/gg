@@ -8,6 +8,7 @@
 
 ## Usage
 
+1. If new third party dependencies were added, run `npm run setup`
 1. Run `npm run debug` or `webpack` to build the debug version
 1. Run `npm run release` or `webpack --env.optimize` to build the release version
 

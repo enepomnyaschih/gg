@@ -1,5 +1,6 @@
 import Component from "jwidget/Component";
 import template from "jwidget/template";
+import show from "jwidget/ui/show";
 
 import Cup from "../models/Cup";
 
@@ -15,8 +16,12 @@ export default class Application extends Component {
 		super();
 	}
 
-	protected renderToolbar() {
-		return false;
+	protected renderShowColumns(el: JQuery) {
+		this.own(show(el, <any>this.cup.hiddenColumns));
+		el.click((e) => {
+			e.preventDefault();
+			this.cup.hiddenColumns.set(0);
+		});
 	}
 
 	protected renderHeaders() {
