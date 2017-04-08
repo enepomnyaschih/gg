@@ -91,13 +91,16 @@ input.nostyle[type=button]
     padding: 0;
     text-align: inherit;
 }
-.blocklink {
+.blocklink
 	display: block;
-	color: inherit;
 	text-decoration: inherit;
 	font: inherit;
 	font-size: 100%;
-}
+
+	&
+	&:active
+	&:visited
+		color inherit
 
 @keyframes spinning {
 	from {
