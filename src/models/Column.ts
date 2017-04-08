@@ -48,6 +48,9 @@ export default class Column extends Class {
 		if (this.superfinal) {
 			return "Суперфинал";
 		}
+		if (this.cup.gridIndex === 1) {
+			return "";
+		}
 		switch (this.matches.getLength()) {
 			case 1: return "Финал";
 			case 2: return "Полуфинал";
@@ -56,7 +59,7 @@ export default class Column extends Class {
 	}
 
 	get fullTitle() {
-		return this.title + ", Bo" + this.bo;
+		return (this.cup.gridIndex === 1) ? ("Bo" + this.bo) : (this.title + ", Bo" + this.bo);
 	}
 
 	get next() {

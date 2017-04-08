@@ -6,6 +6,6 @@ export default class EmptyPlayer extends Component {
 	}
 
 	protected renderRoot(el: JQuery) {
-		el.addClass("gg-player");
+		el.addClass("gg-player g-lose");
 	}
 }
