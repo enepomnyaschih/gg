@@ -8,6 +8,8 @@ export default class MessagePanel extends Component {
 
 	constructor(private message: string, config?: MessagePanelConfig) {
 		super();
+
+		config = config || {};
 		this.cls = config.cls;
 		this.html = config.html || false;
 	}
