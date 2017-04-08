@@ -22,6 +22,7 @@ export default class Cup extends Class {
 	finalbo: number;
 	creatorHtml: string;
 	gridType: number;
+	gridIndex: number; // 0 - winners, 1 - losers
 	grid: JWArray<Column>;
 	hiddenColumns = new Property<number>(0);
 
@@ -39,10 +40,11 @@ export default class Cup extends Class {
 		this.finalbo = config.finalbo;
 		this.creatorHtml = config.creatorHtml;
 		this.gridType = config.gridType;
+		this.gridIndex = config.gridIndex;
 		this.grid = new JWArray(config.grid);
 	}
 
-	static createByJson(json: any) {
+	static createByJson(json: any, gridIndex: number) {
 		const cupJson = json["cup"];
 		const participantArray = (<any[]>cupJson["participants"]).map(Participant.createByJson);
 		const participants = ArrayUtils.index(participantArray, (participant) => participant.id);
@@ -58,9 +60,11 @@ export default class Cup extends Class {
 			description: cupJson["description"],
 			finalbo: +cupJson["finalbo"],
 			creatorHtml: cupJson["creator"],
-			gridType: cupJson["grid_type"]
+			gridType: cupJson["grid_type"],
+			gridIndex: gridIndex
 		});
-		cup.grid.addAll((<any[]>json["grid"]).map((json, index) => Column.createByJson(json, index, cup, participants)))
+		const filteredColumnsJson = (<any[]>json["grid"]).filter((columnJson) => columnJson["losers"] === gridIndex);
+		cup.grid.addAll(filteredColumnsJson.map((json, index) => Column.createByJson(json, index, cup, participants)))
 		return cup;
 	}
 }
@@ -78,5 +82,6 @@ export interface CupConfig {
 	finalbo: number;
 	creatorHtml: string;
 	gridType: number;
+	gridIndex: number;
 	grid?: Column[];
 }
