@@ -7,12 +7,15 @@ import {GOODGAME_API} from "../constants";
 
 @template(require<string>("./Player.jw.html"))
 export default class Player extends Component {
-	constructor(private participant: Participant, private score: number) {
+	constructor(private participant: Participant, private score: number, private win: boolean) {
 		super();
 	}
 
 	protected renderRoot(el: JQuery) {
 		el.attr("href", this.participant.link);
+		if (!this.win) {
+			el.addClass("g-lose");
+		}
 	}
 
 	protected renderAvatar(el: JQuery) {
