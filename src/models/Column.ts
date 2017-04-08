@@ -7,7 +7,7 @@ import Cup from "./Cup";
 import Match from "./Match";
 import Participant from "./Participant";
 
-import {MATCH_GAP, MATCH_HEIGHT} from "../constants";
+import {GRID_TYPE_DOUBLE, MATCH_GAP, MATCH_HEIGHT} from "../constants";
 
 export default class Column extends Class {
 	index: number;
@@ -45,13 +45,13 @@ export default class Column extends Class {
 	}
 
 	get title() {
-		if (this.superfinal) {
-			return "Суперфинал";
-		}
 		if (this.cup.gridIndex === 1) {
 			return "";
 		}
-		switch (this.matches.getLength()) {
+		const columnsRemaining = this.cup.grid.getLength() - this.index -
+			(this.cup.gridType === GRID_TYPE_DOUBLE && this.cup.gridIndex === 0 ? 1 : 0)
+		switch (columnsRemaining) {
+			case 0: return "Суперфинал";
 			case 1: return "Финал";
 			case 2: return "Полуфинал";
 			default: return "1/" + this.matches.getLength();
