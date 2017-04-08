@@ -28,7 +28,7 @@ export default class MatchView extends Component {
 				(this.match.winner === 1) ? WINNER_LINE_OFFSET : 0;
 			// relying on the fact that model bindings get processed earlier than this one
 			this.lineEnd = this.own(this.match.column.cup.hiddenColumns.mapValue(() => {
-				return this.match.next.verticalPosition - this.match.verticalPosition -
+				return this.match.next.verticalPosition - this.match.verticalPosition +
 					(this.match.nextPosition - .5) * (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN);
 			}));
 		}
