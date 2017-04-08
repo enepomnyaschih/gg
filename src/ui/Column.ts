@@ -13,7 +13,7 @@ export default class ColumnView extends Component {
 	}
 
 	protected renderRoot(el: JQuery) {
-		const padding = this.own(this.column.offset.mapValue((offset) => offset + "px 0"));
+		const padding = this.own(this.column.offset.mapValue((offset) => offset + "px 0 0"));
 		el.addClass("gg-column");
 		this.own(css(el, "padding", padding));
 		this.own(show(el, this.column.visible));

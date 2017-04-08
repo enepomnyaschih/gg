@@ -9,7 +9,7 @@ import Match from "../models/Match";
 import EmptyPlayer from "./EmptyPlayer";
 import Player from "./Player";
 
-import {AVATAR_SIZE, PLAYER_BOTTOM_MARGIN, WINNER_LINE_OFFSET} from "../constants";
+import {AVATAR_SIZE, MATCH_GAP, PLAYER_BOTTOM_MARGIN, WINNER_LINE_OFFSET} from "../constants";
 
 @template(require<string>("./Match.jw.html"))
 export default class MatchView extends Component {
@@ -36,6 +36,11 @@ export default class MatchView extends Component {
 
 	protected renderRoot(el: JQuery) {
 		if (this.match === this.match.column.matches.getLast()) {
+			return;
+		}
+		const matchBelow = this.match.column.matches.get(this.match.index + 1);
+		if (matchBelow && matchBelow.third) {
+			el.css("padding-bottom", MATCH_GAP + "px");
 			return;
 		}
 		const padding = this.own(this.match.column.gap.mapValue((gap) => gap + "px"));

@@ -16,6 +16,7 @@ export default class Match extends Class {
 	players: Participant[]; // 2 values
 	score: number[]; // 2 values
 	opened: Date;
+	third: boolean;
 	winner: number; // null if not yet closed
 
 	constructor(config: MatchConfig) {
@@ -27,6 +28,7 @@ export default class Match extends Class {
 		this.players = config.players;
 		this.score = config.score;
 		this.opened = config.opened;
+		this.third = config.third;
 
 		this.winner =
 			(!this.players[1] || this.score[0] >= this.column.maxScore) ? 0 :
@@ -66,7 +68,8 @@ export default class Match extends Class {
 				participants[json["_players"][1]]
 			],
 			score: json["score"],
-			opened: DateUtils.parse(json["opened"])
+			opened: DateUtils.parse(json["opened"]),
+			third: (column.cup.gridIndex === 0) && json["third"]
 		});
 	}
 }
@@ -79,4 +82,5 @@ export interface MatchConfig {
 	players: Participant[]; // 2 values
 	score: number[]; // 2 values
 	opened: Date;
+	third: boolean;
 }
