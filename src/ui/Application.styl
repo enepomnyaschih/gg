@@ -33,8 +33,17 @@ a
 	&-toolbar
 		height header-height - header-padding
 
-	&-grid-link.g-active
-		background-color rgba(255, 255, 255, 0.2)
+	&-grid-link
+		display inline-block
+		padding 8px 16px
+		border-radius 6px
+
+		&:hover
+			background-color rgba(255, 255, 255, 0.1)
+
+		&.g-active
+			background-color rgba(255, 255, 255, 0.2)
+			color white
 
 	&-headers
 		font-size 18px
