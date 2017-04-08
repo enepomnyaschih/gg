@@ -80,7 +80,12 @@ export default class MatchView extends Component {
 
 	private getPlayer(index: number): Component {
 		const participant = this.match.players[index];
-		return participant ? new Player(participant, this.match.score[index], this.match.winner === index) :
-			new EmptyPlayer();
+		return !participant ? new EmptyPlayer() :
+			new Player({
+				cup: this.match.cup,
+				participant: participant,
+				score: this.match.score[index],
+				win: this.match.winner === index
+			});
 	}
 }

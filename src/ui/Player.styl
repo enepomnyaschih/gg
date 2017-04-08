@@ -3,12 +3,35 @@
 .gg-player
 	score-size = 20px
 
-	background-color #1c2644
-	border-radius 2px
-	border-right gg-column-line-width solid gg-column-line-color
-	height gg-avatar-size
 	line-height gg-avatar-size
-	margin-bottom gg-player-bottom-margin
+	position relative
+
+	&-link
+		background-color #1c2644
+		border-radius 2px
+		border-right gg-column-line-width solid gg-column-line-color
+		height gg-avatar-size
+		margin-bottom gg-player-bottom-margin
+
+		&.g-lose
+			border-right-color darken(gg-inactive-color, 25%)
+			color gg-inactive-color
+
+		&.g-lose > &-name
+			color inherit
+
+	button&-align
+		display none
+		position absolute
+		right 40px
+		top 0
+		transform rotate(90deg)
+
+		&:hover
+			color gg-link-color
+
+	&:hover > &-align
+		display block
 
 	&-avatar
 	&-name
@@ -33,10 +56,3 @@
 
 	&-score
 		width score-size
-
-	&.g-lose
-		border-right-color darken(gg-inactive-color, 25%)
-		color gg-inactive-color
-
-	&.g-lose > &-name
-		color inherit
