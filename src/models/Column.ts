@@ -1,5 +1,6 @@
 import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
+import Functor from "jwidget/Functor";
 import JWArray from "jwidget/JWArray";
 import Property from "jwidget/Property";
 
@@ -41,7 +42,19 @@ export default class Column extends Class {
 			}
 			return Math.pow(2, index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 		}));
-		this.offset = this.own(this.gap.mapValue((gap) => gap / 2));
+		this.offset = this.own(new Functor([this.gap, this.cup.alignBy], (gap, alignBy) => {
+			if (!alignBy) {
+				return gap / 2;
+			}
+			const firstMatchIndex = this.cup.grid.get(0).matches.find((match) => match.hasPlayer(alignBy));
+			if (firstMatchIndex === undefined) {
+				return gap / 2;
+			}
+			const currentMatchIndex = Math.floor(firstMatchIndex / Math.pow(2, this.index));
+			return MATCH_GAP / 2 +
+				firstMatchIndex * (MATCH_HEIGHT + MATCH_GAP) -
+				(gap + MATCH_HEIGHT) * currentMatchIndex;
+		})).target;
 	}
 
 	get title() {

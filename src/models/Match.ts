@@ -57,6 +57,10 @@ export default class Match extends Class {
 		return this.index * (MATCH_HEIGHT + this.column.gap.get()) + this.column.offset.get();
 	}
 
+	hasPlayer(participant: Participant) {
+		return this.players.indexOf(participant) !== -1;
+	}
+
 	static createByJson(json: any, column: Column, index: number, participants: Dictionary<Participant>) {
 		return new Match({
 			id: +json["dbid"],

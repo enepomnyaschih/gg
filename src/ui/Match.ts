@@ -1,4 +1,5 @@
 import Component from "jwidget/Component";
+import Functor from "jwidget/Functor";
 import JWArray from "jwidget/JWArray";
 import Property from "jwidget/Property";
 import template from "jwidget/template";
@@ -27,10 +28,11 @@ export default class MatchView extends Component {
 				(this.match.winner === 0) ? -WINNER_LINE_OFFSET :
 				(this.match.winner === 1) ? WINNER_LINE_OFFSET : 0;
 			// relying on the fact that model bindings get processed earlier than this one
-			this.lineEnd = this.own(this.match.column.cup.hiddenColumns.mapValue(() => {
+			const cup = this.match.cup;
+			this.lineEnd = this.own(new Functor([cup.hiddenColumns, cup.alignBy], () => {
 				return this.match.next.verticalPosition - this.match.verticalPosition +
 					(this.match.nextPosition - .5) * (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN);
-			}));
+			})).target;
 		}
 	}
 

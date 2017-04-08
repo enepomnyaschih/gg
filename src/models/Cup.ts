@@ -27,6 +27,7 @@ export default class Cup extends Class {
 	gridIndex: number; // 0 - winners, 1 - losers
 	grid: JWArray<Column>;
 	hiddenColumns = new Property<number>(0);
+	alignBy = new Property<Participant>();
 
 	constructor(config: CupConfig) {
 		super();
