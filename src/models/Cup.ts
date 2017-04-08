@@ -2,6 +2,7 @@ import * as ArrayUtils from "jwidget/ArrayUtils";
 import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
 import JWArray from "jwidget/JWArray";
+import Property from "jwidget/Property";
 
 import Column from "./Column";
 import Participant from "./Participant";
@@ -22,6 +23,7 @@ export default class Cup extends Class {
 	creatorHtml: string;
 	gridType: number;
 	grid: JWArray<Column>;
+	hiddenColumns = new Property<number>(0);
 
 	constructor(config: CupConfig) {
 		super();

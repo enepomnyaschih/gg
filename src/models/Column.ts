@@ -1,6 +1,7 @@
 import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
 import JWArray from "jwidget/JWArray";
+import Property from "jwidget/Property";
 
 import Cup from "./Cup";
 import Match from "./Match";
@@ -13,6 +14,7 @@ export default class Column extends Class {
 	cup: Cup;
 	matches: JWArray<Match>;
 	bo: number;
+	visible: Property<boolean>;
 
 	constructor(config: ColumnConfig) {
 		super();
@@ -20,6 +22,7 @@ export default class Column extends Class {
 		this.cup = config.cup;
 		this.matches = new JWArray(config.matches);
 		this.bo = config.bo;
+		this.visible = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => this.index >= hiddenColumns));
 	}
 
 	get title() {

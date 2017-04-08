@@ -1,5 +1,6 @@
 import Component from "jwidget/Component";
 import {mapDestroyableArray} from "jwidget/mapper/array";
+import show from "jwidget/ui/show";
 
 import Column from "../models/Column";
 
@@ -10,8 +11,9 @@ export default class ColumnView extends Component {
 		super();
 	}
 
-	renderRoot(el: JQuery) {
+	protected renderRoot(el: JQuery) {
 		el.addClass("gg-column").css("padding", this.column.offset + "px 0");
+		this.own(show(el, this.column.visible));
 		return this.own(mapDestroyableArray(this.column.matches, (match) => new Match(match)));
 	}
 }

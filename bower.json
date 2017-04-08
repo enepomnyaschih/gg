@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "jquery": "*",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "components-font-awesome": "^4.7.0"
   }
 }
