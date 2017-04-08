@@ -30,12 +30,14 @@ export default class Column extends Class {
 		this.visible = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => this.index >= hiddenColumns));
 
 		this.gap = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => {
-			let index = this.index - hiddenColumns;
+			let index = this.index;
 			if (this.superfinal) {
 				--index;
 			}
 			if (this.cup.gridIndex === 1) {
-				index = Math.floor(index / 2);
+				index = Math.floor(index / 2) - Math.floor(hiddenColumns / 2);
+			} else {
+				index -= hiddenColumns;
 			}
 			return Math.pow(2, index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 		}));
