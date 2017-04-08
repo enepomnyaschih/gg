@@ -9,7 +9,7 @@ import Match from "../models/Match";
 import EmptyPlayer from "./EmptyPlayer";
 import Player from "./Player";
 
-import {AVATAR_SIZE, MATCH_GAP, PLAYER_BOTTOM_MARGIN, WINNER_LINE_OFFSET} from "../constants";
+import {AVATAR_SIZE, PLAYER_BOTTOM_MARGIN, THIRD_PLACE_MATCH_GAP, WINNER_LINE_OFFSET} from "../constants";
 
 @template(require<string>("./Match.jw.html"))
 export default class MatchView extends Component {
@@ -40,7 +40,7 @@ export default class MatchView extends Component {
 		}
 		const matchBelow = this.match.column.matches.get(this.match.index + 1);
 		if (matchBelow && matchBelow.third) {
-			el.css("padding-bottom", MATCH_GAP + "px");
+			el.css("padding-bottom", THIRD_PLACE_MATCH_GAP + "px");
 			return;
 		}
 		const padding = this.own(this.match.column.gap.mapValue((gap) => gap + "px"));
@@ -49,6 +49,10 @@ export default class MatchView extends Component {
 
 	protected renderPlayers() {
 		return this.own(new JWArray([this.getPlayer(0), this.getPlayer(1)])).ownItems();
+	}
+
+	protected renderThirdPlaceTitle() {
+		return this.match.third;
 	}
 
 	protected renderLines() {
