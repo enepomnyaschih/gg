@@ -51,10 +51,10 @@ module.exports = function(env) {
 
 		plugins: [
 			new CleanWebpackPlugin(['public'], {
-				exclude: ['bower_components', 'backend', '.htaccess']
+				exclude: ['bower_components', 'backend', '.htaccess', 'index.html']
 			}),
 			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common.js"})
-		].concat(Object.keys(pages).map(function(id) {
+		]/*.concat(Object.keys(pages).map(function(id) {
 			return new HtmlWebpackPlugin({
 				chunks: ["common", id],
 				filename: id + ".html",
@@ -63,7 +63,7 @@ module.exports = function(env) {
 				title: pages[id].title,
 				suffix: optimize ? ".min" : ""
 			});
-		})).concat(optimize ? [
+		}))*/.concat(optimize ? [
 			new webpack.optimize.UglifyJsPlugin({
 				minimize: true
 			})
