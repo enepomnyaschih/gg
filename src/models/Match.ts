@@ -33,13 +33,18 @@ export default class Match extends Class {
 			(!this.players[0] || this.score[1] >= this.column.maxScore) ? 1 : null;
 	}
 
+	get cup() {
+		return this.column.cup;
+	}
+
 	get next() {
 		const nextColumn = this.column.next;
-		return nextColumn ? nextColumn.matches.get(Math.floor(this.index / 2)) : null;
+		return !nextColumn ? null : nextColumn.matches.get(
+			(this.cup.gridIndex === 0 || (this.column.index % 2 === 1)) ? Math.floor(this.index / 2) : this.index);
 	}
 
 	get nextPosition() {
-		return this.index % 2;
+		return (this.cup.gridIndex === 0 || (this.column.index % 2 === 1)) ? (this.index % 2) : 1;
 	}
 
 	get winnerPlayer() {

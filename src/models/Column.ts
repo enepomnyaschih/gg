@@ -34,6 +34,9 @@ export default class Column extends Class {
 			if (this.superfinal) {
 				--index;
 			}
+			if (this.cup.gridIndex === 1) {
+				index = Math.floor(index / 2);
+			}
 			return Math.pow(2, index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 		}));
 		this.offset = this.own(this.gap.mapValue((gap) => gap / 2));
