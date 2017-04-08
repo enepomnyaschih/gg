@@ -1,0 +1,5 @@
+DirectorySlash Off
+
+RewriteEngine On
+
+RewriteRule ^\d+$ /index.html
