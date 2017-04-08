@@ -14,6 +14,7 @@ export default class Column extends Class {
 	cup: Cup;
 	matches: JWArray<Match>;
 	bo: number;
+	superfinal: boolean = false;
 	visible: Property<boolean>;
 	gap: Property<number>;
 	offset: Property<number>;
@@ -25,15 +26,23 @@ export default class Column extends Class {
 		this.cup = config.cup;
 		this.matches = new JWArray(config.matches);
 		this.bo = config.bo;
+		this.superfinal = config.superfinal;
 		this.visible = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => this.index >= hiddenColumns));
 
 		this.gap = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => {
-			return Math.pow(2, this.index - hiddenColumns) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
+			let index = this.index - hiddenColumns;
+			if (this.superfinal) {
+				--index;
+			}
+			return Math.pow(2, index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 		}));
 		this.offset = this.own(this.gap.mapValue((gap) => gap / 2));
 	}
 
 	get title() {
+		if (this.superfinal) {
+			return "Суперфинал";
+		}
 		switch (this.matches.getLength()) {
 			case 1: return "Финал";
 			case 2: return "Полуфинал";
@@ -57,11 +66,12 @@ export default class Column extends Class {
 		return (this.bo + 1) / 2;
 	}
 
-	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>) {
+	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>, superfinal: boolean) {
 		const column = new Column({
 			index: index,
 			cup: cup,
-			bo: +json["bo"]
+			bo: +json["bo"],
+			superfinal: superfinal
 		});
 		column.matches.addAll((<any[]>json["matches"]).map((json, index) => Match.createByJson(json, column, index, participants)));
 		return column;
@@ -73,4 +83,5 @@ export interface ColumnConfig {
 	cup: Cup;
 	matches?: Match[];
 	bo: number;
+	superfinal: boolean;
 }

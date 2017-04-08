@@ -9,6 +9,8 @@ import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
+import {GRID_TYPE_DOUBLE} from "../constants";
+
 export default class Cup extends Class {
 	id: number;
 	started: boolean;
@@ -64,7 +66,13 @@ export default class Cup extends Class {
 			gridIndex: gridIndex
 		});
 		const filteredColumnsJson = (<any[]>json["grid"]).filter((columnJson) => columnJson["losers"] === gridIndex);
-		cup.grid.addAll(filteredColumnsJson.map((json, index) => Column.createByJson(json, index, cup, participants)))
+		cup.grid.addAll(filteredColumnsJson.map((json, index) => {
+			const superfinal =
+				(cup.gridType === GRID_TYPE_DOUBLE) &&
+				(cup.gridIndex === 0) &&
+				(index === filteredColumnsJson.length - 1);
+			return Column.createByJson(json, index, cup, participants, superfinal);
+		}));
 		return cup;
 	}
 }
