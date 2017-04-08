@@ -1,6 +1,8 @@
 import Component from "jwidget/Component";
 import JWArray from "jwidget/JWArray";
+import Property from "jwidget/Property";
 import template from "jwidget/template";
+import css from "jwidget/ui/css";
 
 import Match from "../models/Match";
 
@@ -12,7 +14,7 @@ import {AVATAR_SIZE, PLAYER_BOTTOM_MARGIN, WINNER_LINE_OFFSET} from "../constant
 @template(require<string>("./Match.jw.html"))
 export default class MatchView extends Component {
 	private lineBegin: number;
-	private lineEnd: number;
+	private lineEnd: Property<number>;
 
 	constructor(private match: Match) {
 		super();
@@ -24,16 +26,20 @@ export default class MatchView extends Component {
 			this.lineBegin =
 				(this.match.winner === 0) ? -WINNER_LINE_OFFSET :
 				(this.match.winner === 1) ? WINNER_LINE_OFFSET : 0;
-			this.lineEnd = this.match.next.verticalPosition - this.match.verticalPosition -
-				(AVATAR_SIZE + PLAYER_BOTTOM_MARGIN) / 2 +
-				this.match.nextPosition * (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN);
+			// relying on the fact that model bindings get processed earlier than this one
+			this.lineEnd = this.own(this.match.column.cup.hiddenColumns.mapValue(() => {
+				return this.match.next.verticalPosition - this.match.verticalPosition -
+					(this.match.nextPosition - .5) * (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN);
+			}));
 		}
 	}
 
 	protected renderRoot(el: JQuery) {
-		if (this.match !== this.match.column.matches.getLast()) {
-			el.css("padding-bottom", this.match.column.gap + "px");
+		if (this.match === this.match.column.matches.getLast()) {
+			return;
 		}
+		const padding = this.own(this.match.column.gap.mapValue((gap) => gap + "px"));
+		css(el, "padding-bottom", padding);
 	}
 
 	protected renderPlayers() {
@@ -49,12 +55,16 @@ export default class MatchView extends Component {
 	}
 
 	protected renderLine2(el: JQuery) {
-		el.css("top", this.lineEnd + "px");
+		const top = this.own(this.lineEnd.mapValue((lineEnd) => lineEnd + "px"))
+		this.own(css(el, "top", top));
 	}
 
 	protected renderLine3(el: JQuery) {
-		el.css("height", Math.abs(this.lineEnd - this.lineBegin) + "px");
-		el.css("top", Math.min(this.lineEnd, this.lineBegin) + "px");
+		const height = this.own(this.lineEnd.mapValue((lineEnd) => Math.abs(lineEnd - this.lineBegin) + "px"))
+		css(el, "height", height);
+
+		const top = this.own(this.lineEnd.mapValue((lineEnd) => Math.min(lineEnd, this.lineBegin) + "px"));
+		css(el, "top", top);
 	}
 
 	private getPlayer(index: number): Component {

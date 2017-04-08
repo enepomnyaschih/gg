@@ -47,7 +47,7 @@ export default class Match extends Class {
 	}
 
 	get verticalPosition() {
-		return this.index * (MATCH_HEIGHT + this.column.gap) + this.column.offset;
+		return this.index * (MATCH_HEIGHT + this.column.gap.get()) + this.column.offset.get();
 	}
 
 	static createByJson(json: any, column: Column, index: number, participants: Dictionary<Participant>) {

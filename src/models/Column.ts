@@ -15,14 +15,22 @@ export default class Column extends Class {
 	matches: JWArray<Match>;
 	bo: number;
 	visible: Property<boolean>;
+	gap: Property<number>;
+	offset: Property<number>;
 
 	constructor(config: ColumnConfig) {
 		super();
+
 		this.index = config.index;
 		this.cup = config.cup;
 		this.matches = new JWArray(config.matches);
 		this.bo = config.bo;
 		this.visible = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => this.index >= hiddenColumns));
+
+		this.gap = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => {
+			return Math.pow(2, this.index - hiddenColumns) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
+		}));
+		this.offset = this.own(this.gap.mapValue((gap) => gap / 2));
 	}
 
 	get title() {
@@ -43,14 +51,6 @@ export default class Column extends Class {
 
 	get prev() {
 		return this.cup.grid.get(this.index - 1);
-	}
-
-	get offset() {
-		return this.gap / 2;
-	}
-
-	get gap() {
-		return Math.pow(2, this.index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
 	}
 
 	get maxScore() {
