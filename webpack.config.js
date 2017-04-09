@@ -30,7 +30,8 @@ var pages = {
 var path = require("path"),
 	webpack = require("webpack"),
 	CleanWebpackPlugin = require('clean-webpack-plugin'),
-	HtmlWebpackPlugin = require("html-webpack-plugin");
+	HtmlWebpackPlugin = require("html-webpack-plugin"),
+	HtmlWebpackPrefixPlugin = require("html-webpack-prefix-plugin");
 
 var entry = {};
 for (var id in pages) {
@@ -69,19 +70,22 @@ module.exports = function(env) {
 
 		plugins: [
 			new CleanWebpackPlugin(['public'], {
-				exclude: ['bower_components', 'backend', '.htaccess', 'index.html']
+				exclude: ['bower_components', 'backend', '.htaccess']
 			}),
 			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common.js"})
-		]/*.concat(Object.keys(pages).map(function(id) {
+		].concat(Object.keys(pages).map(function(id) {
 			return new HtmlWebpackPlugin({
 				chunks: ["common", id],
 				filename: id + ".html",
 				template: "!!html-webpack-plugin/lib/loader.js!./templates/base.html",
 				inject: "body",
 				title: pages[id].title,
+				prefix: "/",
 				suffix: optimize ? ".min" : ""
 			});
-		}))*/.concat(optimize ? [
+		})).concat([
+			new HtmlWebpackPrefixPlugin()
+		]).concat(optimize ? [
 			new webpack.optimize.UglifyJsPlugin({
 				minimize: true
 			})

@@ -3,4 +3,3 @@ bower_components
 /public/*
 !/public/backend
 !/public/.htaccess
-!/public/index.html
