@@ -40,7 +40,6 @@ export default class Cup extends Class {
 	prizeFund: number;
 	participants: Dictionary<Participant>;
 	description: string;
-	finalbo: number;
 	creatorHtml: string;
 	gridType: number;
 	gridIndex: number; // 0 - winners, 1 - losers
@@ -60,7 +59,6 @@ export default class Cup extends Class {
 		this.prizeFund = config.prizeFund;
 		this.participants = config.participants;
 		this.description = config.description;
-		this.finalbo = config.finalbo;
 		this.creatorHtml = config.creatorHtml;
 		this.gridType = config.gridType;
 		this.gridIndex = config.gridIndex;
@@ -97,7 +95,6 @@ export default class Cup extends Class {
 			prizeFund: cupJson["prize_fund"],
 			participants: participants,
 			description: cupJson["description"],
-			finalbo: +cupJson["finalbo"],
 			creatorHtml: cupJson["creator"],
 			gridType: cupJson["grid_type"],
 			gridIndex: gridIndex
@@ -125,7 +122,6 @@ export interface CupConfig {
 	prizeFund: number;
 	participants: Dictionary<Participant>;
 	description: string;
-	finalbo: number;
 	creatorHtml: string;
 	gridType: number;
 	gridIndex: number;
