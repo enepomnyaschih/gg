@@ -52,6 +52,14 @@ export default class Application extends Component {
 		});
 	}
 
+	protected renderDisableAlignment(el: JQuery) {
+		this.own(show(el, <any>this.cup.alignBy));
+		el.click((e) => {
+			e.preventDefault();
+			this.cup.alignBy.set(null);
+		});
+	}
+
 	protected renderHeaders() {
 		return this.headers = this.own(new Headers(this.cup));
 	}

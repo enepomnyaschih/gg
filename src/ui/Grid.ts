@@ -33,6 +33,9 @@ export default class Grid extends Component {
 	renderRoot(el: JQuery) {
 		this.own(this.cup.alignBy.changeEvent.bind((params) => {
 			const alignBy = params.value;
+			if (!alignBy) {
+				return;
+			}
 			const index = this.cup.getParticipantVerticalIndex(alignBy);
 			el.scrollTop(MATCH_GAP + (index + .5) * (MATCH_HEIGHT + MATCH_GAP) - el.outerHeight() / 2);
 		}));
