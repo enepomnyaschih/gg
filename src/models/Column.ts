@@ -35,6 +35,7 @@ export default class Column extends Class {
 	bo: number;
 	superfinal: boolean = false;
 	visible: Property<boolean>;
+	visibleIndex: Property<number>;
 	gap: Property<number>;
 	offset: Property<number>;
 
@@ -48,30 +49,29 @@ export default class Column extends Class {
 		this.superfinal = config.superfinal;
 		this.visible = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => this.index >= hiddenColumns));
 
-		this.gap = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => {
-			let index = this.index;
-			if (this.superfinal) {
-				--index;
-			}
+		this.visibleIndex = this.own(this.cup.hiddenColumns.mapValue((hiddenColumns) => {
 			if (this.cup.gridIndex === 1) {
-				index = Math.floor(index / 2) - Math.floor(hiddenColumns / 2);
-			} else {
-				index -= hiddenColumns;
+				return Math.floor(this.index / 2) - Math.floor(hiddenColumns / 2);
 			}
-			return Math.pow(2, index) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
+			return this.index - hiddenColumns - (this.superfinal ? 1 : 0);
 		}));
-		this.offset = this.own(new Functor([this.gap, this.cup.alignBy], (gap, alignBy) => {
+		this.gap = this.own(this.visibleIndex.mapValue((visibleIndex) => {
+			return Math.pow(2, visibleIndex) * (MATCH_HEIGHT + MATCH_GAP) - MATCH_HEIGHT;
+		}));
+
+		// rely on the fact that visibleIndex and gap are already computed
+		this.offset = this.own(new Functor([this.cup.hiddenColumns, this.cup.alignBy], (hiddenColumns, alignBy) => {
 			if (!alignBy) {
-				return gap / 2;
+				return this.gap.get() / 2;
 			}
-			const firstMatchIndex = this.cup.grid.get(0).matches.find((match) => match.hasPlayer(alignBy));
+			const firstMatchIndex = this.cup.grid.get(hiddenColumns).matches.find((match) => match.hasPlayer(alignBy));
 			if (firstMatchIndex === undefined) {
-				return gap / 2;
+				return this.gap.get() / 2;
 			}
-			const currentMatchIndex = Math.floor(firstMatchIndex / Math.pow(2, this.index));
+			const currentMatchIndex = Math.floor(firstMatchIndex / Math.pow(2, this.visibleIndex.get()));
 			return MATCH_GAP / 2 +
 				firstMatchIndex * (MATCH_HEIGHT + MATCH_GAP) -
-				(gap + MATCH_HEIGHT) * currentMatchIndex;
+				(this.gap.get() + MATCH_HEIGHT) * currentMatchIndex;
 		})).target;
 	}
 
