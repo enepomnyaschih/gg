@@ -1,8 +1,8 @@
 <?php
 
-$url = $_GET['request'];
+$id = $_GET['id'];
 
-$ch = curl_init( "https://goodgame.ru/$url" );
+$ch = curl_init( "https://goodgame.ru/files/avatars/$id" );
 
 if ( strtolower($_SERVER['REQUEST_METHOD']) == 'post' ) {
 	curl_setopt( $ch, CURLOPT_POST, true );

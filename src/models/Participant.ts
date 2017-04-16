@@ -43,11 +43,12 @@ export default class Participant extends Class {
 	}
 
 	static createByJson(json: any) {
+		const avatarMatches = /^\/files\/avatars\/(.*)$/.exec(json["avatar"]);
 		return new Participant({
 			id: +json["id"],
 			checkin: json["checkin"],
 			name: json["name"],
-			avatar: json["avatar"],
+			avatar: avatarMatches ? avatarMatches[1] : "avatar.png",
 			contact: json["contact"],
 			rating: json["rating"]
 		});

@@ -70,7 +70,7 @@ module.exports = function(env) {
 
 		plugins: [
 			new CleanWebpackPlugin(['public'], {
-				exclude: ['bower_components', 'backend', '.htaccess', 'goodgame.php']
+				exclude: ['bower_components', 'backend', '.htaccess', 'avatar.php', 'grid.php']
 			}),
 			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common.js"})
 		].concat(Object.keys(pages).map(function(id) {

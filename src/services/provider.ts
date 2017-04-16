@@ -20,8 +20,6 @@ import Dictionary from "jwidget/Dictionary";
 
 import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../lib/rest/AbstractRestProvider";
 
-import {GOODGAME_API} from "../constants";
-
 interface Config {}
 
 class Provider extends AbstractRestProvider<Config> {
@@ -35,20 +33,13 @@ class Provider extends AbstractRestProvider<Config> {
 	}
 
 	getContentType(): string {
-		return "application/json";
+		return "application/x-www-form-urlencoded";
 	}
 }
 
 export default new Provider({
-	urlBuilder: (action) => goodgame("ajax/cups/" + action),
+	url: "/${action}.php",
 	settings: {
 		dataType: "json"
 	}
 });
-
-export function goodgame(url: string) {
-	if (url.charAt(0) === "/") {
-		url = url.substr(1);
-	}
-	return GOODGAME_API.replace("${action}", encodeURIComponent(url));
-}
