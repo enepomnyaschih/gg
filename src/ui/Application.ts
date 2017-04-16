@@ -42,6 +42,10 @@ export default class Application extends Component {
 		el.css("background-image", "url(" + iconUrl + ")");
 	}
 
+	protected renderGgLink(el: JQuery) {
+		el.attr("href", this.cup.ggUrl);
+	}
+
 	protected renderGameName(el: JQuery) {
 		el.text(this.cup.title + " - " + this.cup.gameTitle);
 	}

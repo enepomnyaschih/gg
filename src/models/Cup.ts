@@ -27,7 +27,7 @@ import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
-import {GRID_TYPE_DOUBLE} from "../constants";
+import {GOODGAME_HOSTNAME, GRID_TYPE_DOUBLE} from "../constants";
 
 export default class Cup extends Class {
 	id: number;
@@ -65,6 +65,10 @@ export default class Cup extends Class {
 		this.gridType = config.gridType;
 		this.gridIndex = config.gridIndex;
 		this.grid = new JWArray(config.grid);
+	}
+
+	get ggUrl() {
+		return GOODGAME_HOSTNAME + "/cup/" + this.id + "/grid" + (this.gridIndex === 1 ? "/losers" : "");
 	}
 
 	update(cup: Cup) {
