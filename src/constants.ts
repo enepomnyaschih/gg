@@ -39,3 +39,15 @@ export const UNHIDEABLE_COLUMN_COUNT = 2;
 
 // other
 export const REFRESH_INTERVAL = 30000;
+export const GAME_ICON_MAPPING: Dictionary<string> = {
+	"sc2"      : "sc-2",
+	"sc2-lotv" : "sc-2",
+	"wc3"      : "wc-3",
+	"dota2"    : "dota-2",
+	"wot"      : "wot",
+	"lol"      : "lol",
+	"hs"       : "hs",
+	"csgo"     : "csgo",
+	"hots"     : "hots",
+	"rnd"      : "othergame"
+};

@@ -21,11 +21,12 @@ import template from "jwidget/template";
 import show from "jwidget/ui/show";
 
 import Cup from "../models/Cup";
+import * as CupService from "../services/Cup";
 
 import Grid from "./Grid";
 import Headers from "./Headers";
 
-import {GRID_TYPE_SINGLE} from "../constants";
+import {GAME_ICON_MAPPING, GRID_TYPE_SINGLE} from "../constants";
 
 @template(require<string>("./Application.jw.html"))
 export default class Application extends Component {
@@ -34,6 +35,15 @@ export default class Application extends Component {
 
 	constructor(private cup: Cup) {
 		super();
+	}
+
+	protected renderGameIcon(el: JQuery) {
+		const iconUrl = CupService.getGameIconUrl(GAME_ICON_MAPPING[this.cup.game] || "othergame");
+		el.css("background-image", "url(" + iconUrl + ")");
+	}
+
+	protected renderGameName(el: JQuery) {
+		el.text(this.cup.title + " - " + this.cup.gameTitle);
 	}
 
 	protected renderShowWinners(el: JQuery) {

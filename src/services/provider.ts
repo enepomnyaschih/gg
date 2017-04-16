@@ -38,7 +38,7 @@ class Provider extends AbstractRestProvider<Config> {
 }
 
 export default new Provider({
-	url: "/${action}.php",
+	url: "/api/${action}.php",
 	settings: {
 		dataType: "json"
 	}

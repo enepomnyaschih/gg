@@ -18,20 +18,33 @@ a
 		color gg-link-color
 
 .gg-application
-	header-height = 70px
-	header-padding = 20px
+	toolbar-height = 70px
+	header-height = 50px
+	grid-padding = 20px
 
 	height 100%
 
 	&-toolbar
 	&-headers
 		box-sizing border-box
-		padding header-padding
-		padding-bottom 0
 		white-space nowrap
 
 	&-toolbar
-		height header-height - header-padding
+		height toolbar-height
+		padding-left toolbar-height + 5px
+
+	&-game-icon
+		background-color rgba(200, 200, 200, 0.5)
+		background-position center
+		background-repeat no-repeat
+		location 0 0 toolbar-height toolbar-height
+		position absolute
+
+	&-game-name
+		font-size 24px
+		line-height 35px
+		padding-bottom 5px
+		padding-left 16px
 
 	&-grid-link
 		display inline-block
@@ -49,11 +62,11 @@ a
 		font-size 18px
 		height header-height
 		overflow hidden
-		padding-right 100px /* hack for proper scrolling */
+		padding grid-padding 100px 0 grid-padding /* 100px = hack for proper scrolling */
 
 	&-grid
 		box-sizing border-box
-		height "calc(100% - %s)" % (2 * header-height - header-padding)
+		height "calc(100% - %s)" % (toolbar-height + header-height)
 		overflow auto
-		padding 20px
+		padding grid-padding
 		white-space nowrap

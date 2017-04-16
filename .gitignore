@@ -1,6 +1,5 @@
 node_modules
 bower_components
 /public/*
-!/public/backend
-!/public/*.php
+!/public/api
 !/public/.htaccess

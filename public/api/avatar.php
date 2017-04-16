@@ -1,3 +1,5 @@
+<?php
+
 /*
 	Tournament grid
 	Copyright (C) 2017  Egor Nepomnyaschih
@@ -16,14 +18,8 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import Cup from "../models/Cup";
+require_once('common/proxy.php');
 
-import provider from "./provider";
+$id = $_GET['id'];
 
-export function get(id: number, gridIndex: number) {
-	return provider.get("grid", {id: id}, (json) => Cup.createByJson(json, gridIndex));
-}
-
-export function getGameIconUrl(id: string) {
-	return provider.getUrl("game-icon") + "?id=" + id;
-}
+proxy( "files/avatars/$id" );

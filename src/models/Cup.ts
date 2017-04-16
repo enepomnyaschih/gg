@@ -34,6 +34,7 @@ export default class Cup extends Class {
 	started: boolean;
 	logo: string;
 	title: string;
+	game: string;
 	gameTitle: string;
 	start: Date; // parse in Moscow timezone
 	prizeFund: number;
@@ -53,6 +54,7 @@ export default class Cup extends Class {
 		this.started = config.started;
 		this.logo = config.logo;
 		this.title = config.title;
+		this.game = config.game;
 		this.gameTitle = config.gameTitle;
 		this.start = config.start;
 		this.prizeFund = config.prizeFund;
@@ -85,6 +87,7 @@ export default class Cup extends Class {
 			started: cupJson["started"],
 			logo: cupJson["logo"],
 			title: cupJson["title"],
+			game: cupJson["game"],
 			gameTitle: cupJson["gameTitle"],
 			start: DateUtils.parse(cupJson["start"]),
 			prizeFund: cupJson["prize_fund"],
@@ -112,6 +115,7 @@ export interface CupConfig {
 	started: boolean;
 	logo: string;
 	title: string;
+	game: string;
 	gameTitle: string;
 	start: Date;
 	prizeFund: number;
