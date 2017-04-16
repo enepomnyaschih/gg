@@ -22,7 +22,7 @@ import template from "jwidget/template";
 import Cup from "../models/Cup";
 import Participant from "../models/Participant";
 
-import {goodgame} from "../constants";
+import {goodgame} from "../services/provider";
 
 @template(require<string>("./Player.jw.html"))
 export default class Player extends Component {

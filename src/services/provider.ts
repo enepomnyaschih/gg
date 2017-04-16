@@ -20,7 +20,7 @@ import Dictionary from "jwidget/Dictionary";
 
 import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../lib/rest/AbstractRestProvider";
 
-import {goodgame} from "../constants";
+import {GOODGAME_API} from "../constants";
 
 interface Config {}
 
@@ -45,3 +45,10 @@ export default new Provider({
 		dataType: "json"
 	}
 });
+
+export function goodgame(url: string) {
+	if (url.charAt(0) === "/") {
+		url = url.substr(1);
+	}
+	return GOODGAME_API.replace("${action}", encodeURIComponent(url));
+}
