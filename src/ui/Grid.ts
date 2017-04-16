@@ -18,6 +18,7 @@
 
 import Component from "jwidget/Component";
 import {mapDestroyableArray} from "jwidget/mapper/array";
+import Updater from "jwidget/Updater";
 
 import Cup from "../models/Cup";
 
@@ -31,14 +32,13 @@ export default class Grid extends Component {
 	}
 
 	renderRoot(el: JQuery) {
-		this.own(this.cup.alignBy.changeEvent.bind((params) => {
-			const alignBy = params.value;
+		this.own(new Updater([this.cup.alignBy], (alignBy) => {
 			if (!alignBy) {
 				return;
 			}
 			const index = this.cup.getParticipantVerticalIndex(alignBy);
 			el.scrollTop(MATCH_GAP + (index + .5) * (MATCH_HEIGHT + MATCH_GAP) - el.outerHeight() / 2);
-		}));
+		}).watch(this.cup.hiddenColumns));
 		return this.own(mapDestroyableArray(this.cup.grid, (column) => new Column(column)));
 	}
 }
