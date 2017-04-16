@@ -65,6 +65,10 @@ export default class Cup extends Class {
 		this.grid = new JWArray(config.grid);
 	}
 
+	getParticipantVerticalIndex(participant: Participant) {
+		return this.grid.get(this.hiddenColumns.get()).matches.find((match) => match.hasPlayer(participant));
+	}
+
 	static createByJson(json: any, gridIndex: number) {
 		const cupJson = json["cup"];
 		const participantArray = (<any[]>cupJson["participants"]).map(Participant.createByJson);

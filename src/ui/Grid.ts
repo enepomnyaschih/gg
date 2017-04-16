@@ -23,12 +23,19 @@ import Cup from "../models/Cup";
 
 import Column from "./Column";
 
+import {MATCH_GAP, MATCH_HEIGHT} from "../constants";
+
 export default class Grid extends Component {
 	constructor(private cup: Cup) {
 		super();
 	}
 
-	renderRoot() {
+	renderRoot(el: JQuery) {
+		this.own(this.cup.alignBy.changeEvent.bind((params) => {
+			const alignBy = params.value;
+			const index = this.cup.getParticipantVerticalIndex(alignBy);
+			el.scrollTop(MATCH_GAP + (index + .5) * (MATCH_HEIGHT + MATCH_GAP) - el.outerHeight() / 2);
+		}));
 		return this.own(mapDestroyableArray(this.cup.grid, (column) => new Column(column)));
 	}
 }

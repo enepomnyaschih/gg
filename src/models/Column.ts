@@ -60,11 +60,11 @@ export default class Column extends Class {
 		}));
 
 		// rely on the fact that visibleIndex and gap are already computed
-		this.offset = this.own(new Functor([this.cup.hiddenColumns, this.cup.alignBy], (hiddenColumns, alignBy) => {
+		this.offset = this.own(new Functor([this.cup.alignBy], (alignBy) => {
 			if (!alignBy) {
 				return this.gap.get() / 2;
 			}
-			const firstMatchIndex = this.cup.grid.get(hiddenColumns).matches.find((match) => match.hasPlayer(alignBy));
+			const firstMatchIndex = this.cup.getParticipantVerticalIndex(alignBy);
 			if (firstMatchIndex === undefined) {
 				return this.gap.get() / 2;
 			}
@@ -72,7 +72,7 @@ export default class Column extends Class {
 			return MATCH_GAP / 2 +
 				firstMatchIndex * (MATCH_HEIGHT + MATCH_GAP) -
 				(this.gap.get() + MATCH_HEIGHT) * currentMatchIndex;
-		})).target;
+		})).watch(this.cup.hiddenColumns).target;
 	}
 
 	get title() {
