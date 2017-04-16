@@ -16,26 +16,25 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import Dictionary from "jwidget/Dictionary";
+import Component from "jwidget/Component";
+import Property from "jwidget/Property";
+import template from "jwidget/template";
 
-export const GOODGAME_HOSTNAME = "https://goodgame.ru";
+import Match from "../models/Match";
 
-// sizes in px
-export const AVATAR_SIZE = 30;
-export const PLAYER_BOTTOM_MARGIN = 2;
-export const MATCH_HEIGHT = (AVATAR_SIZE + PLAYER_BOTTOM_MARGIN) * 2;
-export const MATCH_GAP = 20;
-export const THIRD_PLACE_MATCH_GAP = 40;
-export const WINNER_LINE_OFFSET = 8;
+import MatchView from "./Match";
 
-// values
-export const GRID_TYPE_SINGLE = 1;
-export const GRID_TYPE_DOUBLE = 3;
-export const GRID_COUNTS: Dictionary<number> = {
-	"1": 1,
-	"3": 2
-};
-export const UNHIDEABLE_COLUMN_COUNT = 2;
+@template(require<string>("./MatchWatcher.jw.html"))
+export default class MatchWatcher extends Component {
+	constructor(private match: Match) {
+		super();
+	}
 
-// other
-export const REFRESH_INTERVAL = 30000;
+	renderMatch() {
+		const view = this.own(new Property<MatchView>(new MatchView(this.match))).ownValue();
+		this.own(this.match.changeEvent.bind(() => {
+			view.set(new MatchView(this.match));
+		}));
+		return view;
+	}
+}

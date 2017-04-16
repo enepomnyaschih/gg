@@ -16,11 +16,13 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import Interval from "jwidget/Interval";
+
 import * as CupService from "./services/Cup";
 import Application from "./ui/Application";
 import MessagePanel from "./lib/ui/MessagePanel";
 
-import {GRID_COUNTS} from "./constants";
+import {GRID_COUNTS, REFRESH_INTERVAL} from "./constants";
 
 require("./index.styl");
 
@@ -48,6 +50,12 @@ $(function() {
 		application.renderTo("body");
 
 		(<any>window).application = application;
+
+		new Interval(() => {
+			CupService.get(cupId, gridIndex).then((newCup) => {
+				cup.update(newCup);
+			});
+		}, REFRESH_INTERVAL);
 	}, () => {
 		const text = "Не удалось загрузить и прочитать данные турнира. " +
 			"Возможно, турнир с таким ID не существует или он не проходит в формате Single Elimination. " +

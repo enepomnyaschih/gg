@@ -23,7 +23,7 @@ import show from "jwidget/ui/show";
 
 import Column from "../models/Column";
 
-import Match from "./Match";
+import MatchWatcher from "./MatchWatcher";
 
 export default class ColumnView extends Component {
 	constructor(private column: Column) {
@@ -35,6 +35,6 @@ export default class ColumnView extends Component {
 		el.addClass("gg-column");
 		this.own(css(el, "padding", padding));
 		this.own(show(el, this.column.visible));
-		return this.own(mapDestroyableArray(this.column.matches, (match) => new Match(match)));
+		return this.own(mapDestroyableArray(this.column.matches, (match) => new MatchWatcher(match)));
 	}
 }

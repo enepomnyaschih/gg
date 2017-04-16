@@ -105,6 +105,12 @@ export default class Column extends Class {
 		return (this.bo + 1) / 2;
 	}
 
+	update(column: Column) {
+		this.matches.each((match, index) => {
+			match.update(column.matches.get(index));
+		})
+	}
+
 	static createByJson(json: any, index: number, cup: Cup, participants: Dictionary<Participant>, superfinal: boolean) {
 		const column = new Column({
 			index: index,
