@@ -20,7 +20,7 @@ import Dictionary from "jwidget/Dictionary";
 
 import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../lib/rest/AbstractRestProvider";
 
-import {GOODGAME_API} from "../constants";
+import {goodgame} from "../constants";
 
 interface Config {}
 
@@ -40,7 +40,7 @@ class Provider extends AbstractRestProvider<Config> {
 }
 
 export default new Provider({
-	url: GOODGAME_API + "/ajax/cups/${action}",
+	urlBuilder: (action) => goodgame("ajax/cups/" + action),
 	settings: {
 		dataType: "json"
 	}

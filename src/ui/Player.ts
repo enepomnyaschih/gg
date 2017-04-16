@@ -22,7 +22,7 @@ import template from "jwidget/template";
 import Cup from "../models/Cup";
 import Participant from "../models/Participant";
 
-import {GOODGAME_API} from "../constants";
+import {goodgame} from "../constants";
 
 @template(require<string>("./Player.jw.html"))
 export default class Player extends Component {
@@ -53,7 +53,7 @@ export default class Player extends Component {
 	}
 
 	protected renderAvatar(el: JQuery) {
-		el.css("background-image", 'url("' + GOODGAME_API + this.participant.avatar + '")');
+		el.css("background-image", 'url("' + goodgame(this.participant.avatar) + '")');
 	}
 
 	protected renderName(el: JQuery) {

@@ -18,8 +18,15 @@
 
 import Dictionary from "jwidget/Dictionary";
 
-export const GOODGAME_API = "/gg-api";
+export const GOODGAME_API = "/goodgame.php?request=${action}";
 export const GOODGAME_HOSTNAME = "https://goodgame.ru";
+
+export function goodgame(url: string) {
+	if (url.charAt(0) === "/") {
+		url = url.substr(1);
+	}
+	return GOODGAME_API.replace("${action}", encodeURIComponent(url));
+}
 
 // sizes in px
 export const AVATAR_SIZE = 30;

@@ -22,4 +22,4 @@
 
 Создайте закладку в браузере, в качестве URL укажите следующий код:
 
-	javascript:(function(l){var m=/^\/cup\/(\d+)/.exec(l.pathname);m?(location.href="http://dvorkin.no-ip.org/"+m[1]):alert("Перейдите на турнир GoodGame и попробуйте снова.")})(location)
+	javascript:(function(l){var m=/^\/cup\/(\d+)/.exec(l.pathname);m?(location.href="http://ggcup.ru/"+m[1]):alert("Перейдите на турнир GoodGame и попробуйте снова.")})(location)

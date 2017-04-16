@@ -24,12 +24,14 @@ import RestRequest from "./RestRequest";
 abstract class AbstractRestProvider<C> {
 	private mock: Dictionary<string>;
 	private url: string;
+	private urlBuilder: (action: string) => string;
 	private settings: JQueryAjaxSettings;
 
 	constructor(config?: AbstractRestProviderConfig) {
 		config = config || {};
 		this.mock = config.mock || {};
 		this.url = config.url || "${action}";
+		this.urlBuilder = config.urlBuilder;
 		this.settings = config.settings;
 	}
 
@@ -45,7 +47,8 @@ abstract class AbstractRestProvider<C> {
 			}
 			action = action.map(encodeURIComponent).join('/');
 		}
-		return this.mock[type + ' ' + action] || this.mock[action] || this.url.replace("${action}", action);
+		return this.mock[type + ' ' + action] || this.mock[action] ||
+			(this.urlBuilder ? this.urlBuilder(action) : this.url.replace("${action}", action));
 	}
 
 	get<T>(action: string | string[], data?: any, factory?: RestFactory<T>, config?: C) {
@@ -97,6 +100,7 @@ export default AbstractRestProvider;
 
 export interface AbstractRestProviderConfig {
 	url?: string;
+	urlBuilder?: (action: string) => string;
 	mock?: Dictionary<string>;
 	settings?: JQueryAjaxSettings;
 }
