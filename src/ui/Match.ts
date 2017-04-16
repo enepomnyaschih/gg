@@ -103,7 +103,7 @@ export default class MatchView extends Component {
 				cup: this.match.cup,
 				participant: participant,
 				score: this.match.score[index],
-				win: this.match.winner === index
+				lose: (this.match.winner != null) && (this.match.winner !== index)
 			});
 	}
 }

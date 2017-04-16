@@ -29,19 +29,19 @@ export default class Player extends Component {
 	private cup: Cup;
 	private participant: Participant;
 	private score: number;
-	private win: boolean;
+	private lose: boolean;
 
 	constructor(config: PlayerViewConfig) {
 		super();
 		this.cup = config.cup;
 		this.participant = config.participant;
 		this.score = config.score;
-		this.win = config.win;
+		this.lose = config.lose;
 	}
 
 	protected renderLink(el: JQuery) {
 		el.attr("href", this.participant.link);
-		if (!this.win) {
+		if (this.lose) {
 			el.addClass("g-lose");
 		}
 	}
@@ -69,5 +69,5 @@ export interface PlayerViewConfig {
 	cup: Cup;
 	participant: Participant;
 	score: number;
-	win: boolean;
+	lose: boolean;
 }
