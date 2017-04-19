@@ -21,6 +21,7 @@ import Class from "jwidget/Class";
 import Dictionary from "jwidget/Dictionary";
 import JWArray from "jwidget/JWArray";
 import Property from "jwidget/Property";
+import Switcher from "jwidget/Switcher";
 
 import Column from "./Column";
 import Participant from "./Participant";
@@ -63,6 +64,15 @@ export default class Cup extends Class {
 		this.gridType = config.gridType;
 		this.gridIndex = config.gridIndex;
 		this.grid = new JWArray(config.grid);
+
+		this.own(new Switcher([this.alignBy], {
+			init: (participant: Participant) => {
+				participant.aligned.set(true);
+			},
+			done: (participant: Participant) => {
+				participant.aligned.set(false);
+			}
+		}));
 	}
 
 	get ggUrl() {

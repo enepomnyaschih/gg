@@ -17,8 +17,18 @@
 			border-right-color darken(gg-inactive-color, 25%)
 			color gg-inactive-color
 
+		&.g-aligned
+			background-color lighten(#1c2644, 60%)
+
 	&-link.g-lose > &-name
 		color inherit
+
+	&-link.g-aligned > &-name
+		color white
+		font-weight bold
+
+	&-link.g-aligned.g-lose > &-name
+		color black
 
 	button&-align
 		display none

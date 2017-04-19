@@ -17,6 +17,7 @@
 */
 
 import Interval from "jwidget/Interval";
+import * as MapUtils from "jwidget/MapUtils";
 
 import * as CupService from "./services/Cup";
 import Application from "./ui/Application";
@@ -51,9 +52,16 @@ $(function() {
 
 		(<any>window).application = application;
 
+		const hash = location.hash.substr(1);
+		const participant = MapUtils.search(cup.participants, (participant) => participant.name === hash);
+		if (participant) {
+			cup.alignBy.set(participant);
+		}
+
 		new Interval(() => {
 			CupService.get(cupId, gridIndex).then((newCup) => {
 				cup.update(newCup);
+				newCup.destroy();
 			});
 		}, REFRESH_INTERVAL);
 	}, () => {

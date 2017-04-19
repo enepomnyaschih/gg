@@ -47,7 +47,7 @@ module.exports = function(env) {
 
 		output: {
 			path: path.resolve(__dirname, "public"),
-			filename: "[name].js"
+			filename: "bundle-[hash].js"
 		},
 
 		devtool: optimize ? undefined : "source-map",

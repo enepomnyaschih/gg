@@ -18,6 +18,7 @@
 
 import Component from "jwidget/Component";
 import template from "jwidget/template";
+import cls from "jwidget/ui/class";
 
 import Cup from "../models/Cup";
 import Participant from "../models/Participant";
@@ -40,6 +41,7 @@ export default class Player extends Component {
 	}
 
 	protected renderLink(el: JQuery) {
+		this.own(cls(el, "g-aligned", this.participant.aligned));
 		el.attr("href", this.participant.link);
 		if (this.lose) {
 			el.addClass("g-lose");

@@ -31,7 +31,7 @@ export default class MatchWatcher extends Component {
 	}
 
 	renderMatch() {
-		const view = this.own(new Property<MatchView>(new MatchView(this.match))).ownValue();
+		const view = this.own(new Property<Component>(new MatchView(this.match))).ownValue();
 		this.own(this.match.changeEvent.bind(() => {
 			view.set(new MatchView(this.match));
 		}));
