@@ -88,7 +88,9 @@ export default class Match extends Class {
 			ArrayUtils.equal(this.score, match.score)) {
 			return;
 		}
-		this.players.splice(0, 2, match.players[0], match.players[1]);
+		this.players.splice(0, 2,
+			match.players[0] ? this.cup.participants[match.players[0].id] : null,
+			match.players[1] ? this.cup.participants[match.players[1].id] : null);
 		this.score.splice(0, 2, match.score[0], match.score[1]);
 		this.winner = this.computeWinner();
 		this.changeEvent.trigger();
