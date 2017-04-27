@@ -81,7 +81,8 @@ module.exports = function(env) {
 				inject: "body",
 				title: pages[id].title,
 				prefix: "/",
-				suffix: optimize ? ".min" : ""
+				suffix: optimize ? ".min" : "",
+				dc: new Date().getTime()
 			});
 		})).concat([
 			new HtmlWebpackPrefixPlugin()
