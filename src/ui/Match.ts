@@ -90,20 +90,13 @@ export default class MatchView extends Component {
 
 	protected renderLine3(el: JQuery) {
 		const height = this.own(this.lineEnd.mapValue((lineEnd) => Math.abs(lineEnd - this.lineBegin) + "px"))
-		css(el, "height", height);
+		this.own(css(el, "height", height));
 
 		const top = this.own(this.lineEnd.mapValue((lineEnd) => Math.min(lineEnd, this.lineBegin) + "px"));
-		css(el, "top", top);
+		this.own(css(el, "top", top));
 	}
 
 	private getPlayer(index: number): Component {
-		const participant = this.match.players[index];
-		return !participant ? new EmptyPlayer() :
-			new Player({
-				cup: this.match.cup,
-				participant: participant,
-				score: this.match.score[index],
-				lose: (this.match.winner != null) && (this.match.winner !== index)
-			});
+		return this.match.players[index] ? new Player(this.match, index) : new EmptyPlayer();
 	}
 }

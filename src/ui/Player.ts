@@ -20,37 +20,31 @@ import Component from "jwidget/Component";
 import template from "jwidget/template";
 import cls from "jwidget/ui/class";
 
-import Cup from "../models/Cup";
+import Match from "../models/Match";
 import Participant from "../models/Participant";
 
 import * as ParticipantService from "../services/Participant";
 
 @template(require<string>("./Player.jw.html"))
 export default class Player extends Component {
-	private cup: Cup;
 	private participant: Participant;
-	private score: number;
-	private lose: boolean;
 
-	constructor(config: PlayerViewConfig) {
+	constructor(private match: Match, private index: number) {
 		super();
-		this.cup = config.cup;
-		this.participant = config.participant;
-		this.score = config.score;
-		this.lose = config.lose;
+		this.participant = match.players[index];
 	}
 
 	protected renderLink(el: JQuery) {
 		this.own(cls(el, "g-aligned", this.participant.aligned));
 		el.attr("href", this.participant.link);
-		if (this.lose) {
+		if ((this.match.winner != null) && (this.match.winner !== this.index)) {
 			el.addClass("g-lose");
 		}
 	}
 
 	protected renderAlign(el: JQuery) {
 		el.click(() => {
-			this.cup.alignBy.set(this.participant);
+			this.match.cup.alignBy.set(this.participant);
 		});
 	}
 
@@ -63,13 +57,7 @@ export default class Player extends Component {
 	}
 
 	protected renderScore(el: JQuery) {
-		el.text(this.score);
+		el.text(this.match.score[this.index]);
+		return this.match.started;
 	}
-}
-
-export interface PlayerViewConfig {
-	cup: Cup;
-	participant: Participant;
-	score: number;
-	lose: boolean;
 }

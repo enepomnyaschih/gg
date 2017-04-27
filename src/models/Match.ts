@@ -79,6 +79,11 @@ export default class Match extends Class {
 		return this.players.map((participant) => participant ? participant.id : null);
 	}
 
+	get started() {
+		return (this.players[0] != null) && (this.players[1] != null) &&
+			(this.score[0] + this.score[1] > 0);
+	}
+
 	hasPlayer(participant: Participant) {
 		return this.players.indexOf(participant) !== -1;
 	}
