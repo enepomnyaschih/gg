@@ -16,20 +16,26 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import LoadPanel from "../lib/ui/LoadPanel";
+import AbstractArray from "jwidget/AbstractArray";
+import Component from "jwidget/Component";
+import {mapDestroyableArray} from "jwidget/mapper/array";
+import template from "jwidget/template";
 
-import * as CupList from "../common/services/CupList";
-import Application from "../common/ui/Application";
+import CupInfo from "../../common/models/CupInfo";
 
-import Page from "./ui/Page";
+import Cup from "./Cup";
 
-require("./index.styl");
+@template(require<string>("./CupTable.jw.html"))
+export default class CupTable extends Component {
+	constructor(readonly cups: AbstractArray<CupInfo>, private withDates: boolean = false) {
+		super();
+	}
 
-$(function() {
-	const loader = new LoadPanel({
-		loader: CupList.get,
-		renderer: (cupList) => new Page(cupList)
-	}).render();
-	loader.el.addClass("gg-index-page-loader");
-	new Application(loader).ownPage().renderTo("body");
-});
+	protected renderDate() {
+		return this.withDates;
+	}
+
+	protected renderCups() {
+		return mapDestroyableArray(this.cups, (cupInfo) => new Cup(cupInfo, this.withDates));
+	}
+}

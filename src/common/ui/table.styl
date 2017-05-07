@@ -1,0 +1,26 @@
+@import "../../imports"
+
+.gg-table
+	line-height 44px
+
+	&-header
+		background gg-background-color-3
+		border-radius 3px 3px 0 0
+		color #DFECFF
+		display flex
+
+	&-body
+		border 2px solid gg-background-color-3
+
+	&-row
+		display flex
+		border-top 1px solid gg-background-color-2
+
+		&:first-child
+			border-top none
+
+		&:hover
+			background-color gg-background-color-2
+
+	&-cell
+		padding 0 12px

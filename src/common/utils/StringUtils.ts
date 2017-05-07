@@ -16,30 +16,14 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import Dictionary from "jwidget/Dictionary";
-
-import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../../lib/rest/AbstractRestProvider";
-
-interface Config {}
-
-class Provider extends AbstractRestProvider<Config> {
-
-	constructor(config?: AbstractRestProviderConfig) {
-		super(config);
+export function plural(value: number, single: string, bunch: string, many: string): string {
+	const value100 = value % 100;
+	if (value100 >= 10 && value <= 20) {
+		return value + " " + many;
 	}
-
-	getHeaders(): Dictionary<string> {
-		return {};
+	const value10 = value % 10;
+	if (value10 === 1) {
+		return value + " " + single;
 	}
-
-	getContentType(): string {
-		return "application/x-www-form-urlencoded";
-	}
+	return value + " " + bunch;
 }
-
-export default new Provider({
-	url: "/api/${action}.php",
-	settings: {
-		dataType: "json"
-	}
-});

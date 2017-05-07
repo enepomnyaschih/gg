@@ -1,3 +1,5 @@
+<?php
+
 /*
 	Tournament grid
 	Copyright (C) 2017  Egor Nepomnyaschih
@@ -16,20 +18,6 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import LoadPanel from "../lib/ui/LoadPanel";
+require_once('common/proxy.php');
 
-import * as CupList from "../common/services/CupList";
-import Application from "../common/ui/Application";
-
-import Page from "./ui/Page";
-
-require("./index.styl");
-
-$(function() {
-	const loader = new LoadPanel({
-		loader: CupList.get,
-		renderer: (cupList) => new Page(cupList)
-	}).render();
-	loader.el.addClass("gg-index-page-loader");
-	new Application(loader).ownPage().renderTo("body");
-});
+proxy( "ajax/cups/list/view" );

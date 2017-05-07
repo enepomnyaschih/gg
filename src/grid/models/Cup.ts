@@ -26,7 +26,7 @@ import Switcher from "jwidget/Switcher";
 import Column from "./Column";
 import Participant from "./Participant";
 
-import * as DateUtils from "../utils/DateUtils";
+import * as DateUtils from "../../common/utils/DateUtils";
 
 import {GOODGAME_HOSTNAME, GRID_TYPE_DOUBLE} from "../../constants";
 

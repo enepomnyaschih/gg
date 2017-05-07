@@ -16,20 +16,30 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import LoadPanel from "../lib/ui/LoadPanel";
+import Dictionary from "jwidget/Dictionary";
 
-import * as CupList from "../common/services/CupList";
-import Application from "../common/ui/Application";
+import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../lib/rest/AbstractRestProvider";
 
-import Page from "./ui/Page";
+interface Config {}
 
-require("./index.styl");
+class RestProvider extends AbstractRestProvider<Config> {
 
-$(function() {
-	const loader = new LoadPanel({
-		loader: CupList.get,
-		renderer: (cupList) => new Page(cupList)
-	}).render();
-	loader.el.addClass("gg-index-page-loader");
-	new Application(loader).ownPage().renderTo("body");
+	constructor(config?: AbstractRestProviderConfig) {
+		super(config);
+	}
+
+	getHeaders(): Dictionary<string> {
+		return {};
+	}
+
+	getContentType(): string {
+		return "application/x-www-form-urlencoded";
+	}
+}
+
+export default new RestProvider({
+	url: "/api/${action}.php",
+	settings: {
+		dataType: "json"
+	}
 });

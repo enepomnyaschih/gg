@@ -24,7 +24,7 @@ import Event from "jwidget/Event";
 import Column from "./Column";
 import Participant from "./Participant";
 
-import * as DateUtils from "../utils/DateUtils";
+import * as DateUtils from "../../common/utils/DateUtils";
 
 import {MATCH_HEIGHT} from "../../constants";
 

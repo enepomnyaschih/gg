@@ -16,20 +16,10 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import LoadPanel from "../lib/ui/LoadPanel";
+import CupList from "../models/CupList";
 
-import * as CupList from "../common/services/CupList";
-import Application from "../common/ui/Application";
+import provider from "../../common/RestProvider";
 
-import Page from "./ui/Page";
-
-require("./index.styl");
-
-$(function() {
-	const loader = new LoadPanel({
-		loader: CupList.get,
-		renderer: (cupList) => new Page(cupList)
-	}).render();
-	loader.el.addClass("gg-index-page-loader");
-	new Application(loader).ownPage().renderTo("body");
-});
+export function get() {
+	return provider.get("list", null, (json) => CupList.createByJson(json));
+}

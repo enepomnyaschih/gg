@@ -16,7 +16,7 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import provider from "./provider";
+import provider from "../../common/RestProvider";
 
 export function getAvatarUrl(id: string) {
 	return provider.getUrl("avatar") + "?id=" + id;

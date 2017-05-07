@@ -19,6 +19,21 @@
 import Component from "jwidget/Component";
 import template from "jwidget/template";
 
+import CupList from "../../common/models/CupList";
+
+import CupTable from "./CupTable";
+
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
+	constructor(readonly cupList: CupList) {
+		super();
+	}
+
+	protected renderStarted() {
+		return this.own(new CupTable(this.cupList.started, false));
+	}
+
+	protected renderOpened() {
+		return this.own(new CupTable(this.cupList.opened, true));
+	}
 }

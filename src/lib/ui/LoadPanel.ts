@@ -74,7 +74,7 @@ export default class LoadPanel<T> extends Component {
 
 	_onFail() {
 		this.request.set(null);
-		this.content.set(new MessagePanel('UNABLE_TO_LOAD_CONTENT'));
+		this.content.set(new MessagePanel('Не удалось загрузить содержимое.'));
 	}
 }
 

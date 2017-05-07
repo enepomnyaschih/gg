@@ -18,7 +18,7 @@
 
 import Cup from "../models/Cup";
 
-import provider from "./provider";
+import provider from "../../common/RestProvider";
 
 export function get(id: number, gridIndex: number) {
 	return provider.get("grid", {id: id}, (json) => Cup.createByJson(json, gridIndex));
