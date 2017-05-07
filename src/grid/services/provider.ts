@@ -18,7 +18,7 @@
 
 import Dictionary from "jwidget/Dictionary";
 
-import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../lib/rest/AbstractRestProvider";
+import {default as AbstractRestProvider, AbstractRestProviderConfig} from "../../lib/rest/AbstractRestProvider";
 
 interface Config {}
 

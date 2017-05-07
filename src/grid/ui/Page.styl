@@ -1,28 +1,11 @@
-@import "../imports"
+@import "../../imports"
 
-html
-	background-color gg-background-color
-	color white
-	font-family sans-serif
-	font-size 14px
-	height 100%
-	overflow hidden
-
-body
-	height 100%
-
-a
-	&
-	&:active
-	&:visited
-		color gg-link-color
-
-.gg-application
+.gg-grid-page
 	toolbar-height = 70px
-	header-height = 50px
+	header-height = 40px
 	grid-padding = 20px
 
-	height 100%
+	position relative
 
 	&-toolbar
 	&-headers
@@ -30,6 +13,7 @@ a
 		white-space nowrap
 
 	&-toolbar
+		background-color gg-background-color-2
 		height toolbar-height
 		padding-left toolbar-height + 5px
 
@@ -47,7 +31,6 @@ a
 	&-game-name
 		font-size 24px
 		line-height 35px
-		padding-bottom 5px
 		padding-left 16px
 
 	&-grid-link
@@ -63,10 +46,12 @@ a
 			color white
 
 	&-headers
+		background-color gg-background-color-3
 		font-size 18px
 		height header-height
+		line-height header-height
 		overflow hidden
-		padding grid-padding 100px 0 grid-padding /* 100px = hack for proper scrolling */
+		padding-right 100px /* 100px = hack for proper scrolling */
 
 	&-grid
 		box-sizing border-box

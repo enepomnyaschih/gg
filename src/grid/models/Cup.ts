@@ -28,7 +28,7 @@ import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
-import {GOODGAME_HOSTNAME, GRID_TYPE_DOUBLE} from "../constants";
+import {GOODGAME_HOSTNAME, GRID_TYPE_DOUBLE} from "../../constants";
 
 export default class Cup extends Class {
 	id: number;

@@ -26,7 +26,7 @@ import Participant from "./Participant";
 
 import * as DateUtils from "../utils/DateUtils";
 
-import {MATCH_HEIGHT} from "../constants";
+import {MATCH_HEIGHT} from "../../constants";
 
 export default class Match extends Class {
 	id: number;

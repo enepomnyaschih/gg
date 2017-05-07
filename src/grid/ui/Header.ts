@@ -22,7 +22,7 @@ import show from "jwidget/ui/show";
 
 import Column from "../models/Column";
 
-import {UNHIDEABLE_COLUMN_COUNT} from "../constants";
+import {UNHIDEABLE_COLUMN_COUNT} from "../../constants";
 
 @template(require<string>("./Header.jw.html"))
 export default class Header extends Component {

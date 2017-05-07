@@ -26,10 +26,10 @@ import * as CupService from "../services/Cup";
 import Grid from "./Grid";
 import Headers from "./Headers";
 
-import {GAME_ICON_MAPPING, GRID_TYPE_SINGLE} from "../constants";
+import {GAME_ICON_MAPPING, GRID_TYPE_SINGLE} from "../../constants";
 
-@template(require<string>("./Application.jw.html"))
-export default class Application extends Component {
+@template(require<string>("./Page.jw.html"))
+export default class Page extends Component {
 	private headers: Headers;
 	private grid: Grid;
 
@@ -40,10 +40,6 @@ export default class Application extends Component {
 	protected renderGameIcon(el: JQuery) {
 		const iconUrl = CupService.getGameIconUrl(GAME_ICON_MAPPING[this.cup.game] || "othergame");
 		el.css("background-image", "url(" + iconUrl + ")");
-	}
-
-	protected renderGgLink(el: JQuery) {
-		el.attr("href", this.cup.ggUrl);
 	}
 
 	protected renderGameName(el: JQuery) {

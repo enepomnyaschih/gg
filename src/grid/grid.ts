@@ -19,13 +19,14 @@
 import Interval from "jwidget/Interval";
 import * as MapUtils from "jwidget/MapUtils";
 
+import Application from "../common/ui/Application";
 import * as CupService from "./services/Cup";
-import Application from "./ui/Application";
-import MessagePanel from "./lib/ui/MessagePanel";
+import Page from "./ui/Page";
+import MessagePanel from "../lib/ui/MessagePanel";
 
-import {GRID_COUNTS, REFRESH_INTERVAL} from "./constants";
+import {GRID_COUNTS, REFRESH_INTERVAL} from "../constants";
 
-require("./index.styl");
+require("./grid.styl");
 
 $(function() {
 	const matches = /^\/(\d+)(\/.*)?$/.exec(window.location.pathname);
@@ -47,7 +48,7 @@ $(function() {
 			return;
 		}
 
-		const application = new Application(cup);
+		const application = new Application(new Page(cup)).ownPage();
 		application.renderTo("body");
 
 		(<any>window).application = application;

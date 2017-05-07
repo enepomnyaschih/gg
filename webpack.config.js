@@ -20,8 +20,10 @@
 
 var pages = {
 	"index": {
-		source: "./index.ts",
-		title: "Турнирная сетка для GoodGame.ru"
+		source: "./index/index.ts"
+	},
+	"grid": {
+		source: "./grid/grid.ts"
 	}
 };
 
@@ -47,7 +49,7 @@ module.exports = function(env) {
 
 		output: {
 			path: path.resolve(__dirname, "public"),
-			filename: "bundle-[hash].js"
+			filename: "bundle-[name]-[hash].js"
 		},
 
 		devtool: optimize ? undefined : "source-map",
@@ -69,17 +71,14 @@ module.exports = function(env) {
 		},
 
 		plugins: [
-			new CleanWebpackPlugin(['public'], {
-				exclude: ['bower_components', '.htaccess', 'api']
-			}),
+			new CleanWebpackPlugin(['public/*.html', 'public/*.js', 'public/*.map']),
 			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common.js"})
 		].concat(Object.keys(pages).map(function(id) {
 			return new HtmlWebpackPlugin({
 				chunks: ["common", id],
 				filename: id + ".html",
-				template: "!!html-webpack-plugin/lib/loader.js!./templates/base.html",
+				template: "!!html-webpack-plugin/lib/loader.js!./templates/index.html",
 				inject: "body",
-				title: pages[id].title,
 				prefix: "/",
 				suffix: optimize ? ".min" : "",
 				dc: new Date().getTime()

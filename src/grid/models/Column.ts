@@ -26,7 +26,7 @@ import Cup from "./Cup";
 import Match from "./Match";
 import Participant from "./Participant";
 
-import {GRID_TYPE_DOUBLE, MATCH_GAP, MATCH_HEIGHT} from "../constants";
+import {GRID_TYPE_DOUBLE, MATCH_GAP, MATCH_HEIGHT} from "../../constants";
 
 export default class Column extends Class {
 	index: number;

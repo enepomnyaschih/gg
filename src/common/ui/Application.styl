@@ -1,0 +1,51 @@
+@import "../../imports"
+
+html
+	background-color gg-background-color
+	color white
+	font-family sans-serif
+	font-size 14px
+	height 100%
+	overflow hidden
+
+body
+	height 100%
+
+a
+	&
+	&:active
+	&:visited
+		color gg-link-color
+
+.gg-application
+	height 100%
+
+	nav-height = 48px
+
+	&-nav
+		background-color gg-background-color-3
+		height nav-height
+		line-height nav-height
+
+		> h1
+			margin 0
+
+		&-link
+			padding 0 23px
+
+			&:hover
+				background-color gg-nav-link-hover-bg-color
+
+	&-brand
+		background scroll transparent url(/images/logo.svg) no-repeat 23px center
+		background-size 24px 24px
+		float left
+		font-size 21px
+		font-weight bold
+		padding-left 64px
+
+	&-gg-link
+		float right
+
+	&-page
+		height "calc(100% - %s)" % nav-height

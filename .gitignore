@@ -1,5 +1,5 @@
 node_modules
 bower_components
-/public/*
-!/public/api
-!/public/.htaccess
+/public/*.html
+/public/*.js
+/public/*.map

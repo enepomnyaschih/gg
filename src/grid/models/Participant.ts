@@ -19,7 +19,7 @@
 import Class from "jwidget/Class";
 import Property from "jwidget/Property";
 
-import {GOODGAME_HOSTNAME} from "../constants";
+import {GOODGAME_HOSTNAME} from "../../constants";
 
 export default class Participant extends Class {
 	id: number;

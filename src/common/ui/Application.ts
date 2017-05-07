@@ -17,28 +17,26 @@
 */
 
 import Component from "jwidget/Component";
-import {mapDestroyableArray} from "jwidget/mapper/array";
-import Updater from "jwidget/Updater";
+import template from "jwidget/template";
 
-import Cup from "../models/Cup";
+import {GOODGAME_HOSTNAME} from "../../constants";
 
-import Column from "./Column";
-
-import {MATCH_GAP, MATCH_HEIGHT} from "../constants";
-
-export default class Grid extends Component {
-	constructor(private cup: Cup) {
+@template(require<string>("./Application.jw.html"))
+export default class Application extends Component {
+	constructor(private page: Component) {
 		super();
 	}
 
-	renderRoot(el: JQuery) {
-		this.own(new Updater([this.cup.alignBy], (alignBy) => {
-			if (!alignBy) {
-				return;
-			}
-			const index = this.cup.getParticipantVerticalIndex(alignBy);
-			el.scrollTop(MATCH_GAP + (index + .5) * (MATCH_HEIGHT + MATCH_GAP) - el.outerHeight() / 2);
-		}).watch(this.cup.hiddenColumns));
-		return this.own(mapDestroyableArray(this.cup.grid, (column) => new Column(column)));
+	ownPage(): this {
+		this.own(this.page);
+		return this;
+	}
+
+	protected renderGgLink(el: JQuery) {
+		el.attr("href", GOODGAME_HOSTNAME + "/cup" + location.pathname);
+	}
+
+	protected renderPage() {
+		return this.page;
 	}
 }

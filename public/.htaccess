@@ -2,4 +2,4 @@ DirectorySlash Off
 
 RewriteEngine On
 
-RewriteRule ^\d+ /index.html
+RewriteRule ^\d+ /grid.html
