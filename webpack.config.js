@@ -19,11 +19,14 @@
 /* Configuration */
 
 var pages = {
-	"index": {
-		source: "./index/index.ts"
+	"about": {
+		source: "./about/about.ts"
 	},
 	"grid": {
 		source: "./grid/grid.ts"
+	},
+	"index": {
+		source: "./index/index.ts"
 	}
 };
 

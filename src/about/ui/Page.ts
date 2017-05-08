@@ -16,26 +16,9 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import AbstractArray from "jwidget/AbstractArray";
 import Component from "jwidget/Component";
-import {mapDestroyableArray} from "jwidget/mapper/array";
 import template from "jwidget/template";
 
-import CupInfo from "../../common/models/CupInfo";
-
-import Cup from "./Cup";
-
-@template(require<string>("./CupTable.jw.html"))
-export default class CupTable extends Component {
-	constructor(readonly cups: AbstractArray<CupInfo>, private withDates: boolean = false) {
-		super();
-	}
-
-	protected renderDate() {
-		return this.withDates;
-	}
-
-	protected renderCups() {
-		return this.own(mapDestroyableArray(this.cups, (cupInfo) => new Cup(cupInfo, this.withDates)));
-	}
+@template(require<string>("./Page.jw.html"))
+export default class Page extends Component {
 }

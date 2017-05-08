@@ -26,10 +26,8 @@ import Page from "./ui/Page";
 require("./index.styl");
 
 $(function() {
-	const loader = new LoadPanel({
+	new Application(new LoadPanel({
 		loader: CupList.get,
 		renderer: (cupList) => new Page(cupList)
-	}).render();
-	loader.el.addClass("gg-index-page-loader");
-	new Application(loader).ownPage().renderTo("body");
+	})).ownPage().renderTo("body");
 });

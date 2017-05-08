@@ -16,26 +16,12 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import AbstractArray from "jwidget/AbstractArray";
-import Component from "jwidget/Component";
-import {mapDestroyableArray} from "jwidget/mapper/array";
-import template from "jwidget/template";
+import Application from "../common/ui/Application";
 
-import CupInfo from "../../common/models/CupInfo";
+import Page from "./ui/Page";
 
-import Cup from "./Cup";
+require("./about.styl");
 
-@template(require<string>("./CupTable.jw.html"))
-export default class CupTable extends Component {
-	constructor(readonly cups: AbstractArray<CupInfo>, private withDates: boolean = false) {
-		super();
-	}
-
-	protected renderDate() {
-		return this.withDates;
-	}
-
-	protected renderCups() {
-		return this.own(mapDestroyableArray(this.cups, (cupInfo) => new Cup(cupInfo, this.withDates)));
-	}
-}
+$(function() {
+	new Application(new Page()).ownPage().renderTo("body");
+});

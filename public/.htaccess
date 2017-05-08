@@ -2,4 +2,5 @@ DirectorySlash Off
 
 RewriteEngine On
 
+RewriteRule ^about/?$ /about.html
 RewriteRule ^\d+ /grid.html
