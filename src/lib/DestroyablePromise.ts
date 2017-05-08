@@ -17,8 +17,9 @@
 */
 
 import Destroyable from "jwidget/Destroyable";
+import IDestroyablePromise from "./IDestroyablePromise";
 
-export default class DestroyablePromise<T> implements Destroyable {
+export default class DestroyablePromise<T> implements IDestroyablePromise<T> {
 	//private _promise: Promise<T>;
 
 	constructor(private _promise: Promise<T>, private baseDestroyable?: Destroyable) {
@@ -35,13 +36,13 @@ export default class DestroyablePromise<T> implements Destroyable {
 		}
 	}
 
-    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => U | Thenable<U>): DestroyablePromise<U>;
-    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => void): DestroyablePromise<U>;
-    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => any): DestroyablePromise<U> {
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U>;
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => void): IDestroyablePromise<U>;
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => any): IDestroyablePromise<U> {
 		return new DestroyablePromise(this._promise.then(onFulfilled, onRejected), this);
-    }
+	}
 
-	catch<U>(onRejected?: (error: any) => U | Thenable<U>): DestroyablePromise<U> {
+	catch<U>(onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U> {
 		return new DestroyablePromise(this._promise.catch(onRejected), this);
 	}
 }

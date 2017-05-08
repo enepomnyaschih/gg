@@ -16,15 +16,13 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import CupInfo from "../models/CupInfo";
-import CupList from "../models/CupList";
+import Destroyable from "jwidget/Destroyable";
 
-import provider from "../../common/RestProvider";
+interface IDestroyablePromise<T> extends Destroyable {
+    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U>;
+    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => void): IDestroyablePromise<U>;
 
-export function get() {
-	return provider.get("list", null, (json) => CupList.createByJson(json));
+	catch<U>(onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U>;
 }
 
-export function past(page: number) {
-	return provider.get("past", {page: page}, (json) => (<any[]>json).map(CupInfo.createByJson));
-}
+export default IDestroyablePromise;

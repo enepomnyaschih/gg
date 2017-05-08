@@ -19,18 +19,21 @@
 import * as ArrayUtils from "jwidget/ArrayUtils";
 import Class from "jwidget/Class";
 import JWArray from "jwidget/JWArray";
+import ObservableArray from "jwidget/ObservableArray";
 
 import CupInfo from "./CupInfo";
 
 export default class CupList extends Class {
 	readonly opened = new JWArray<CupInfo>();
 	readonly started = new JWArray<CupInfo>();
+	readonly past = new ObservableArray<CupInfo>();
 
 	constructor(config?: CupListConfig) {
 		super();
 		config = config || {};
 		this.opened.addAll(config.opened || []);
 		this.started.addAll(config.started || []);
+		this.past.addAll(config.past || []);
 	}
 
 	static createByJson(json: any) {
@@ -44,4 +47,5 @@ export default class CupList extends Class {
 export interface CupListConfig {
 	readonly opened?: CupInfo[];
 	readonly started?: CupInfo[];
+	readonly past?: CupInfo[];
 }

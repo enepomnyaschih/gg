@@ -16,12 +16,11 @@
 	with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import Destroyable from "jwidget/Destroyable";
-
 import DestroyablePromise from "../DestroyablePromise";
+import IDestroyablePromise from "../IDestroyablePromise";
 import RestFactory from "./RestFactory";
 
-export default class RestRequest<T> implements Destroyable {
+export default class RestRequest<T> implements IDestroyablePromise<T> {
 	private aborted = false;
 	private _promise: Promise<T>;
 
@@ -49,13 +48,13 @@ export default class RestRequest<T> implements Destroyable {
 		this.xhr.abort();
 	}
 
-    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => U | Thenable<U>): DestroyablePromise<U>;
-    then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => void): DestroyablePromise<U>;
-	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => any) {
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U>;
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => void): IDestroyablePromise<U>;
+	then<U>(onFulfilled?: (value: T) => U | Thenable<U>, onRejected?: (error: any) => any): IDestroyablePromise<U> {
 		return new DestroyablePromise(this._promise.then(onFulfilled, onRejected), this);
 	}
 
-	catch<U>(onRejected?: (error: any) => U | Thenable<U>): DestroyablePromise<U> {
+	catch<U>(onRejected?: (error: any) => U | Thenable<U>): IDestroyablePromise<U> {
 		return new DestroyablePromise(this._promise.catch(onRejected), this);
 	}
 }

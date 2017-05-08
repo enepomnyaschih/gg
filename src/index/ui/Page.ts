@@ -17,14 +17,22 @@
 */
 
 import Component from "jwidget/Component";
+import Destroyable from "jwidget/Destroyable";
+import Functor from "jwidget/Functor";
+import Property from "jwidget/Property";
 import template from "jwidget/template";
+import show from "jwidget/ui/show";
 
 import CupList from "../../common/models/CupList";
+import * as CupListService from "../../common/services/CupList";
 
 import CupTable from "./CupTable";
 
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
+	private pastRequest = this.own(new Property<Destroyable>()).ownValue();
+	private lastPage = 0;
+
 	constructor(readonly cupList: CupList) {
 		super();
 	}
@@ -35,5 +43,34 @@ export default class Page extends Component {
 
 	protected renderOpened() {
 		return this.own(new CupTable(this.cupList.opened, true));
+	}
+
+	protected renderPast() {
+		return this.own(new CupTable(this.cupList.past, true));
+	}
+
+	protected renderMore(el: JQuery) {
+		const noRequest = this.own(new Functor([this.pastRequest], (request) => !request)).target;
+		this.own(show(el, noRequest));
+		el.click(() => this.loadMore());
+	}
+
+	protected renderMoreIndicator(el: JQuery) {
+		this.own(show(el, <any>this.pastRequest));
+	}
+
+	protected afterRender() {
+		super.afterRender();
+		this.loadMore();
+	}
+
+	private loadMore() {
+		if (this.pastRequest.get()) {
+			return;
+		}
+		this.pastRequest.set(CupListService.past(++this.lastPage).then((cups) => {
+			this.pastRequest.set(null);
+			this.cupList.past.addAll(cups);
+		}));
 	}
 }

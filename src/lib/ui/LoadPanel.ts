@@ -21,8 +21,10 @@ import Destroyable from "jwidget/Destroyable";
 import Property from "jwidget/Property";
 import template from "jwidget/template";
 
-import RestRequest from "../rest/RestRequest";
+import IDestroyablePromise from "../IDestroyablePromise";
 import MessagePanel from "../ui/MessagePanel";
+
+require("./LoadPanel.styl");
 
 @template(require<string>("./LoadPanel.jw.html"))
 export default class LoadPanel<T> extends Component {
@@ -79,7 +81,7 @@ export default class LoadPanel<T> extends Component {
 }
 
 export interface LoadPanelLoader<T> {
-	(): RestRequest<T>;
+	(): IDestroyablePromise<T>;
 }
 
 export interface LoadPanelRenderer<T> {
