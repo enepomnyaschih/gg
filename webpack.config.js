@@ -75,7 +75,7 @@ module.exports = function(env) {
 
 		plugins: [
 			new CleanWebpackPlugin(['public/*.html', 'public/*.js', 'public/*.map']),
-			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common.js"})
+			new webpack.optimize.CommonsChunkPlugin({name: "common", filename: "common-[hash].js"})
 		].concat(Object.keys(pages).map(function(id) {
 			return new HtmlWebpackPlugin({
 				chunks: ["common", id],
