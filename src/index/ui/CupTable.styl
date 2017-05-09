@@ -2,14 +2,13 @@
 
 .gg-index-cup-table
 	&-game
-	&-date
 		flex 4
+
+	&-date
+		flex-basis 150px
 
 	&-title
 		flex 10
-		overflow hidden
-		text-overflow ellipsis
-		white-space nowrap
 
 	&-prize
 	&-participants
@@ -17,3 +16,8 @@
 
 	.gg-table-body &-prize
 		color gg-prize-color
+
+	.gg-table-cell
+		overflow hidden
+		text-overflow ellipsis
+		white-space nowrap

@@ -17,8 +17,20 @@ a
 	&:visited
 		color gg-link-color
 
+p
+	line-height 1.3
+	text-align justify
+
+@media screen and (max-width: 400px)
+	.gg-md-and-more
+		display none
+
 @media screen and (max-width: 600px)
-	.gg-lg-only
+	.gg-lg-and-more
+		display none
+
+@media screen and (max-width: 920px)
+	.gg-xl-and-more
 		display none
 
 .gg-application
@@ -60,3 +72,11 @@ a
 	&-page
 		height "calc(100% - %s)" % nav-height
 		overflow auto
+
+	@media screen and (max-width: 600px)
+		&-nav-link
+			background-position center center
+			box-sizing border-box
+			padding 0
+			text-align center
+			width 25%
