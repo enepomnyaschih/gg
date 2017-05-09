@@ -19,6 +19,11 @@
 import Component from "jwidget/Component";
 import template from "jwidget/template";
 
+import Copyright from "../../common/ui/Copyright";
+
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
+	protected renderCopyright() {
+		return this.own(new Copyright());
+	}
 }

@@ -25,6 +25,7 @@ import show from "jwidget/ui/show";
 
 import CupList from "../../common/models/CupList";
 import * as CupListService from "../../common/services/CupList";
+import Copyright from "../../common/ui/Copyright";
 
 import CupTable from "./CupTable";
 
@@ -57,6 +58,10 @@ export default class Page extends Component {
 
 	protected renderMoreIndicator(el: JQuery) {
 		this.own(show(el, <any>this.pastRequest));
+	}
+
+	protected renderCopyright() {
+		return this.own(new Copyright());
 	}
 
 	protected afterRender() {

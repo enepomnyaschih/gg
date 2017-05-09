@@ -17,24 +17,12 @@
 */
 
 import Component from "jwidget/Component";
-import {mapDestroyableArray} from "jwidget/mapper/array";
-import css from "jwidget/ui/css";
-import show from "jwidget/ui/show";
+import template from "jwidget/template";
 
-import Column from "../models/Column";
-
-import MatchWatcher from "./MatchWatcher";
-
-export default class ColumnView extends Component {
-	constructor(private column: Column) {
-		super();
-	}
-
-	protected renderRoot(el: JQuery) {
-		const padding = this.own(this.column.offset.mapValue((offset) => offset + "px"));
-		el.addClass("gg-column");
-		this.own(css(el, "padding-top", padding));
-		this.own(show(el, this.column.visible));
-		return this.own(mapDestroyableArray(this.column.matches, (match) => new MatchWatcher(match)));
+@template(require<string>("./Copyright.jw.html"))
+export default class Copyright extends Component {
+	protected renderRange(el: JQuery) {
+		const year = new Date().getFullYear();
+		el.text("2017" + (year > 2017 ? "-" + year : ""));
 	}
 }

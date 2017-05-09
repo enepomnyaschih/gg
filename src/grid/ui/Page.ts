@@ -20,6 +20,8 @@ import Component from "jwidget/Component";
 import template from "jwidget/template";
 import show from "jwidget/ui/show";
 
+import Copyright from "../../common/ui/Copyright";
+
 import Cup from "../models/Cup";
 import * as CupService from "../services/Cup";
 
@@ -76,6 +78,10 @@ export default class Page extends Component {
 
 	protected renderGrid() {
 		return this.grid = this.own(new Grid(this.cup));
+	}
+
+	protected renderCopyright() {
+		return this.own(new Copyright());
 	}
 
 	protected afterAppend() {
