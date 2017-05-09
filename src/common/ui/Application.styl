@@ -40,11 +40,18 @@ a
 	&-brand
 		background scroll transparent url(/images/logo.svg) no-repeat 23px center
 		background-size 24px 24px
-		float left
 		padding-left 64px
 
 	&-gg-link
-		float right
+		background scroll transparent url(/images/gg-logo.svg) no-repeat center center
+		height nav-height
+		width 32px
+
+	&-donate
+		&
+		&:active
+		&:visited
+			color gg-donate-color
 
 	&-page
 		height "calc(100% - %s)" % nav-height
