@@ -17,6 +17,10 @@ a
 	&:visited
 		color gg-link-color
 
+@media screen and (max-width: 600px)
+	.gg-lg-only
+		display none
+
 .gg-application
 	height 100%
 
@@ -32,6 +36,7 @@ a
 			margin 0
 
 		&-link
+			height nav-height
 			padding 0 23px
 
 			&:hover
@@ -44,7 +49,6 @@ a
 
 	&-gg-link
 		background scroll transparent url(/images/gg-logo.svg) no-repeat center center
-		height nav-height
 		width 32px
 
 	&-donate
