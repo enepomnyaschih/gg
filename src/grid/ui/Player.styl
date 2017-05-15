@@ -17,25 +17,17 @@
 			border-right-color darken(gg-inactive-color, 25%)
 			color gg-inactive-color
 
-		&.g-aligned
-			background-color lighten(#1c2644, 60%)
-
 	&-link.g-lose > &-name
 		color inherit
-
-	&-link.g-aligned > &-name
-		color white
-		font-weight bold
-
-	&-link.g-aligned.g-lose > &-name
-		color black
 
 	button&-align
 		display none
 		position absolute
-		right 40px
+		right 32px
+		text-align center
 		top 0
 		transform rotate(90deg)
+		width gg-avatar-size
 
 		&:hover
 			color gg-link-color
@@ -66,3 +58,16 @@
 
 	&-score
 		width score-size
+
+	&.g-aligned > &-link
+		background-color lighten(#1c2644, 60%)
+
+	&.g-aligned &-name
+		color white
+		font-weight bold
+
+	&.g-aligned > .g-lose > &-name
+		color black
+
+	&.g-aligned > &-align
+		display none

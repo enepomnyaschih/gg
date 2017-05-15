@@ -45,7 +45,7 @@ export default class Page extends Component {
 	}
 
 	protected renderGameName(el: JQuery) {
-		el.text(this.cup.title + " - " + this.cup.gameTitle);
+		el.text(this.cup.title + (this.cup.gameTitle ? (" - " + this.cup.gameTitle) : ""));
 	}
 
 	protected renderShowWinners(el: JQuery) {

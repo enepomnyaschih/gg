@@ -34,8 +34,11 @@ export default class Player extends Component {
 		this.participant = match.players[index];
 	}
 
-	protected renderLink(el: JQuery) {
+	protected renderRoot(el: JQuery) {
 		this.own(cls(el, "g-aligned", this.participant.aligned));
+	}
+
+	protected renderLink(el: JQuery) {
 		el.attr("href", this.participant.link);
 		if ((this.match.winner != null) && (this.match.winner !== this.index)) {
 			el.addClass("g-lose");
