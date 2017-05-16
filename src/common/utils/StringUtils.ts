@@ -25,5 +25,8 @@ export function plural(value: number, single: string, bunch: string, many: strin
 	if (value10 === 1) {
 		return value + " " + single;
 	}
+	if (value10 === 0 || value10 >= 5) {
+		return value + " " + many;
+	}
 	return value + " " + bunch;
 }
