@@ -29,7 +29,7 @@ import {GRID_COUNTS, REFRESH_INTERVAL} from "../constants";
 require("./grid.styl");
 
 $(function() {
-	const matches = /^\/(\d+)(\/.*)?$/.exec(window.location.pathname);
+	const matches = /^\/(\d+)(\/[^\/]*)?/.exec(window.location.pathname);
 	if (!matches) {
 		const text = "Не указан ID турнира. Пожалуйста, перейдите на турнир " +
 			"GoodGame и попробуйте применить букмарклет турнирной сетки.";
@@ -48,7 +48,8 @@ $(function() {
 			return;
 		}
 
-		const application = new Application("cup" + window.location.pathname, new Page(cup)).ownPage();
+		const gridName = (gridIndex === 1) ? "losers" : "winners";
+		const application = new Application("cup/" + cupId + "/grid/" + gridName, new Page(cup)).ownPage();
 		application.renderTo("body");
 
 		(<any>window).application = application;

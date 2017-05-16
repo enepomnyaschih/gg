@@ -17,9 +17,3 @@
 1. To add a new page, see **Configuration** section in `webpack.config.js`
 1. To add a new JS thirdparty, see `bower.json` and `templates/base.html`
 1. To add a new TS thirdparty, see `package.json`
-
-## Как открыть эту сетку для любого турнира на GoodGame.ru
-
-Создайте закладку в браузере, в качестве URL укажите следующий код:
-
-	javascript:(function(l){var m=/^\/cup\/(\d+)/.exec(l.pathname);m?(location.href="http://ggcup.ru/"+m[1]):alert("Перейдите на турнир GoodGame и попробуйте снова.")})(location)
