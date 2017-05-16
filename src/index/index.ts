@@ -26,7 +26,7 @@ import Page from "./ui/Page";
 require("./index.styl");
 
 $(function() {
-	new Application(new LoadPanel({
+	new Application("", new LoadPanel({
 		loader: CupList.get,
 		renderer: (cupList) => new Page(cupList)
 	})).ownPage().renderTo("body");

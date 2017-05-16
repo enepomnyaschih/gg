@@ -23,7 +23,7 @@ import {GOODGAME_HOSTNAME} from "../../constants";
 
 @template(require<string>("./Application.jw.html"))
 export default class Application extends Component {
-	constructor(private page: Component) {
+	constructor(private ggLink: string, private page: Component) {
 		super();
 	}
 
@@ -33,7 +33,7 @@ export default class Application extends Component {
 	}
 
 	protected renderGgLink(el: JQuery) {
-		el.attr("href", GOODGAME_HOSTNAME + "/cup" + location.pathname);
+		el.attr("href", GOODGAME_HOSTNAME + "/" + this.ggLink);
 	}
 
 	protected renderPage() {

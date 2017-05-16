@@ -23,5 +23,5 @@ import Page from "./ui/Page";
 require("./about.styl");
 
 $(function() {
-	new Application(new Page()).ownPage().renderTo("body");
+	new Application("", new Page()).ownPage().renderTo("body");
 });

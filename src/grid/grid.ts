@@ -48,7 +48,7 @@ $(function() {
 			return;
 		}
 
-		const application = new Application(new Page(cup)).ownPage();
+		const application = new Application("cup" + window.location.pathname, new Page(cup)).ownPage();
 		application.renderTo("body");
 
 		(<any>window).application = application;
