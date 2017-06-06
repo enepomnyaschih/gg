@@ -18,8 +18,6 @@
 
 import Class from "jwidget/Class";
 
-import * as DateUtils from "../utils/DateUtils";
-
 export default class CupInfo extends Class {
 	readonly id: number;
 	readonly started: boolean;
@@ -56,7 +54,7 @@ export default class CupInfo extends Class {
 			title: json["title"],
 			game: json["game"],
 			gameTitle: json["gameTitle"],
-			start: DateUtils.parse(json["start"]),
+			start: new Date(json["start"] * 1000),
 			prizeFund: json["prize_fund"],
 			participantCount: json["participants"]
 		});

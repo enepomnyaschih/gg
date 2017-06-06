@@ -26,8 +26,6 @@ import Switcher from "jwidget/Switcher";
 import Column from "./Column";
 import Participant from "./Participant";
 
-import * as DateUtils from "../../common/utils/DateUtils";
-
 import {GOODGAME_HOSTNAME, GRID_TYPE_DOUBLE} from "../../constants";
 
 export default class Cup extends Class {
@@ -101,7 +99,7 @@ export default class Cup extends Class {
 			title: cupJson["title"],
 			game: cupJson["game"],
 			gameTitle: cupJson["gameTitle"],
-			start: DateUtils.parse(cupJson["start"]),
+			start: new Date(cupJson["start"] * 1000),
 			prizeFund: cupJson["prize_fund"],
 			participants: participants,
 			description: cupJson["description"],
