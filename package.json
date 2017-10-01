@@ -6,23 +6,28 @@
     "@types/es6-promise": "0.0.32",
     "@types/jquery": "2.0.39",
     "@types/lodash": "^4.14.54",
+    "js-joda": "^1.4.0",
+    "jwidget": "2.0.3"
+  },
+  "devDependencies": {
+    "bower": "1.8.x",
     "clean-webpack-plugin": "0.1.14",
     "css-loader": "0.26.1",
     "file-loader": "0.9.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.26.0",
     "html-webpack-prefix-plugin": "0.0.5",
-    "js-joda": "^1.4.0",
-    "jwidget": "2.0.3",
     "source-map-loader": "0.1.5",
     "style-loader": "0.13.1",
+    "stylus": "0.54.5",
     "stylus-loader": "2.4.0",
     "ts-loader": "1.3.3",
+    "typescript": "2.3.x",
     "url-loader": "0.5.7",
+    "webpack": "2.x",
     "webpack-strip-block": "0.1.0"
   },
   "scripts": {
-    "setup": "npm install -g bower typescript webpack stylus karma-cli & npm link typescript webpack stylus & bower install & npm install",
     "debug": "webpack",
     "release": "webpack --env.optimize"
   }

@@ -4,11 +4,14 @@
 
 1. Download the repository
 1. Install NodeJS
-1. Run `npm run setup`
+1. Run `npm install`
+1. Run `bower install`
+
+*Note:* This project requires a specific version of TypeScript, so the globally installed TypeScript compiler may be incompatible. That's why all dependencies are installed locally.
 
 ## Usage
 
-1. If new third party dependencies were added, run `npm run setup`
+1. If third party dependencies were updated, run `npm install` and `bower install` again
 1. Run `npm run debug` or `webpack` to build the debug version
 1. Run `npm run release` or `webpack --env.optimize` to build the release version
 
