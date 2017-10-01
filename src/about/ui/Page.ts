@@ -17,12 +17,27 @@
 */
 
 import Component from "jwidget/Component";
+import Property from "jwidget/Property";
 import template from "jwidget/template";
+import show from "jwidget/ui/show";
 
 import Copyright from "../../common/ui/Copyright";
 
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
+	protected renderExpander(el: JQuery) {
+		el.each((index, element) => {
+			index = index;
+			const el = $(element);
+			const expanded = new Property(false);
+			show(this.getElement(el.data("target")), expanded);
+			el.click((e) => {
+				e.preventDefault();
+				expanded.set(!expanded.get());
+			});
+		});
+	}
+
 	protected renderCopyright() {
 		return this.own(new Copyright());
 	}
