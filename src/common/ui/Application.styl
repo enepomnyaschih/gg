@@ -54,6 +54,30 @@ p
 			&:hover
 				background-color gg-nav-link-hover-bg-color
 
+	&-locale
+		background scroll transparent none no-repeat center center
+
+		&[data-locale=ru]
+			background-image url(/images/ru.png)
+
+		&[data-locale=en]
+			background-image url(/images/en.png)
+
+		&-current
+			padding 0
+			width 58px
+
+		&-dropdown
+			display none
+			position absolute
+
+		&-box:hover &-dropdown
+			display block
+
+		&-option
+			margin 2px 2px 0 0
+			size 30px 20px
+
 	&-brand
 		background scroll transparent url(/images/logo.svg) no-repeat 23px center
 		background-size 24px 24px

@@ -20,7 +20,10 @@ import Component from "jwidget/Component";
 import template from "jwidget/template";
 
 import {GOODGAME_HOSTNAME} from "../../constants";
+import {localized} from "../../locale";
+import * as locale from "../../locale";
 
+@localized
 @template(require<string>("./Application.jw.html"))
 export default class Application extends Component {
 	constructor(private ggLink: string, private page: Component) {
@@ -34,6 +37,17 @@ export default class Application extends Component {
 
 	protected renderGgLink(el: JQuery) {
 		el.attr("href", GOODGAME_HOSTNAME + "/" + this.ggLink);
+	}
+
+	protected renderLocaleCurrent(el: JQuery) {
+		el.attr("data-locale", locale.current());
+	}
+
+	protected renderLocaleOption(el: JQuery) {
+		el.click((e) => {
+			e.preventDefault();
+			locale.reload($(e.target).attr("data-locale"));
+		});
 	}
 
 	protected renderPage() {

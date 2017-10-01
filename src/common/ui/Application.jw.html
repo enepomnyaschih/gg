@@ -1,9 +1,16 @@
 <div jwclass="gg-application">
 	<nav jwid="nav" class="cleafix">
-		<a jwid="nav-link gg-link" class="blocklink right" title="Перейти на GoodGame.ru"></a>
-		<a jwid="nav-link donate" class="blocklink right" href="https://money.yandex.ru/to/410014034575272" target="_blank" title="Поддержать приложение GG Cup через Яндекс.Деньги"><i class="fa fa-usd fa-lg" aria-hidden="true"></i><span class="gg-lg-and-more">&nbsp;&nbsp;Поддержать</span></a>
-		<a jwid="nav-link brand" class="blocklink left" href="/"><span class="gg-lg-and-more">Турниры</span></a>
-		<a jwid="nav-link" class="blocklink left" href="/about"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i><span class="gg-lg-and-more">&nbsp;&nbsp;О проекте</span></a>
+		<a jwid="nav-link translate-title gg-link" class="blocklink right" title="OPEN_GG"></a>
+		<a jwid="nav-link translate-title donate" class="blocklink right" href="https://money.yandex.ru/to/410014034575272" target="_blank" title="SUPPORT_VIA_YM"><i class="fa fa-usd fa-lg" aria-hidden="true"></i><span jwid="translate" class="gg-lg-and-more">&nbsp;&nbsp;SUPPORT</span></a>
+		<div jwid="locale-box" class="right">
+			<div jwid="nav-link locale locale-current"></div>
+			<div jwid="locale-dropdown">
+				<a jwid="locale locale-option" class="blocklink right" href="javascript:void" data-locale="ru" title="Переключиться на русский"></a>
+				<a jwid="locale locale-option" class="blocklink right" href="javascript:void" data-locale="en" title="Switch to English"></a>
+			</div>
+		</div>
+		<a jwid="nav-link brand" class="blocklink left" href="/"><span jwid="translate" class="gg-lg-and-more">TOURNAMENTS</span></a>
+		<a jwid="nav-link" class="blocklink left" href="/about"><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i><span jwid="translate" class="gg-lg-and-more">&nbsp;&nbsp;ABOUT</span></a>
 	</nav>
 	<div jwid="page"></div>
 </div>
