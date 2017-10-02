@@ -29,7 +29,9 @@ import Grid from "./Grid";
 import Headers from "./Headers";
 
 import {GAME_ICON_MAPPING, GRID_TYPE_SINGLE} from "../../constants";
+import {localized} from "../../locale";
 
+@localized
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
 	private headers: Headers;

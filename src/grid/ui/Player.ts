@@ -25,6 +25,9 @@ import Participant from "../models/Participant";
 
 import * as ParticipantService from "../services/Participant";
 
+import {localized} from "../../locale";
+
+@localized
 @template(require<string>("./Player.jw.html"))
 export default class Player extends Component {
 	private participant: Participant;

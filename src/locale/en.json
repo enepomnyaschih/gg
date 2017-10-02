@@ -1,9 +1,11 @@
 {
 	"ABOUT": "About",
+	"ALIGN_GRID_BY_THIS_PLAYER": "Align grid by this player",
 	"ANOTHER": "Another",
 	"COPYRIGHT": "Egor Nepomnyaschih. All rights reserved.",
 	"CUP_NAME": "Name",
 	"DATE": "Date",
+	"DISABLE_ALIGNMENT_BY_PLAYER": "Disable alignment by player",
 	"ERROR_INVALID_CUP_ID": "Tournament ID is not specified.",
 	"ERROR_INVALID_GRID_TYPE": "It seems that this tournament has an unsupported grid type. This client supports only Single Elimination and Double Elimination. If this grid has one of these types, but you still see this error, please, ${link}report it${endlink}.",
 	"ERROR_UNABLE_TO_LOAD": "Unable to load and parse the tournament data. Perhaps the tournament with this ID does not exist or it has an unsupported grid type. If this is not a case, please, ${link}report this issue${endlink}.",
@@ -11,6 +13,7 @@
 	"GAME": "Game",
 	"HIDE_STAGE": "Hide stage",
 	"LOAD_MORE": "Load more",
+	"LOSERS_BRACKET": "Losers bracket",
 	"MEMBER": "member",
 	"MEMBER_PL1": "members",
 	"MEMBER_PL2": "members",
@@ -24,9 +27,11 @@
 	"PROJECT_INFO1": "Select the tournament from the list or create a bookmark in your browser to quickly open GG Cup right from GoodGame.ru site. Just drag and drop the next link to your bookmark panel",
 	"PROJECT_INFO2": "And vice versa, you can always return back to GoodGame.ru by clicking the button in the top right corner of the site.",
 	"PROJECT_NAME": "GG Cup tournament grid",
+	"SHOW_HIDDEN_STAGES": "Show hidden stages",
 	"SUPPORT": "Support",
 	"SUPPORT_VIA_YM": "Support GG Cup application via Yandex.Money",
 	"THIRD_PLACE_MATCH": "Third place match",
 	"TOURNAMENTS": "Tournaments",
-	"UPCOMING_TOURNAMENTS": "Upcoming tournaments"
+	"UPCOMING_TOURNAMENTS": "Upcoming tournaments",
+	"WINNERS_BRACKET": "Winners bracket"
 }
