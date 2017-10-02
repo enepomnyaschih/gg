@@ -4,11 +4,14 @@
 	"COPYRIGHT": "Egor Nepomnyaschih. All rights reserved.",
 	"CUP_NAME": "Name",
 	"DATE": "Date",
+	"FINISHED_TOURNAMENTS": "Finished tournaments",
 	"GAME": "Game",
+	"LOAD_MORE": "Load more",
 	"MEMBER": "member",
 	"MEMBER_PL1": "members",
 	"MEMBER_PL2": "members",
 	"MEMBERS": "Members",
+	"ONGOING_TOURNAMENTS": "Ongoing tournaments",
 	"OPEN_AND_TRY_AGAIN": "Open a tournament at GoodGame.ru and try again.",
 	"OPEN_GG": "Open GoodGame.ru",
 	"OPEN_IN_GGCUP": "Open in GG Cup",
@@ -19,5 +22,6 @@
 	"PROJECT_NAME": "GG Cup tournament grid",
 	"SUPPORT": "Support",
 	"SUPPORT_VIA_YM": "Support GG Cup application via Yandex.Money",
-	"TOURNAMENTS": "Tournaments"
+	"TOURNAMENTS": "Tournaments",
+	"UPCOMING_TOURNAMENTS": "Upcoming tournaments"
 }

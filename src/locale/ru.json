@@ -4,11 +4,14 @@
 	"COPYRIGHT": "Егор Непомнящих. Все права защищены.",
 	"CUP_NAME": "Название",
 	"DATE": "Дата",
+	"FINISHED_TOURNAMENTS": "Прошедшие турниры",
 	"GAME": "Игра",
+	"LOAD_MORE": "Загрузить еще",
 	"MEMBER": "участник",
 	"MEMBER_PL1": "участника",
 	"MEMBER_PL2": "участников",
 	"MEMBERS": "Участники",
+	"ONGOING_TOURNAMENTS": "Текущие турниры",
 	"OPEN_AND_TRY_AGAIN": "Перейдите на турнир GoodGame.ru и попробуйте снова.",
 	"OPEN_GG": "Перейти на GoodGame.ru",
 	"OPEN_IN_GGCUP": "Открыть в GG Cup",
@@ -19,5 +22,6 @@
 	"PROJECT_NAME": "Турнирная сетка GG Cup",
 	"SUPPORT": "Поддержать",
 	"SUPPORT_VIA_YM": "Поддержать приложение GG Cup через Яндекс.Деньги",
-	"TOURNAMENTS": "Турниры"
+	"TOURNAMENTS": "Турниры",
+	"UPCOMING_TOURNAMENTS": "Предстоящие турниры"
 }
