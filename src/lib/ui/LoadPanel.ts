@@ -24,6 +24,8 @@ import template from "jwidget/template";
 import IDestroyablePromise from "../IDestroyablePromise";
 import MessagePanel from "../ui/MessagePanel";
 
+import locale from "../../locale";
+
 require("./LoadPanel.styl");
 
 @template(require<string>("./LoadPanel.jw.html"))
@@ -76,7 +78,7 @@ export default class LoadPanel<T> extends Component {
 
 	_onFail() {
 		this.request.set(null);
-		this.content.set(new MessagePanel('Не удалось загрузить содержимое.'));
+		this.content.set(new MessagePanel(locale("UNABLE_TO_LOAD_CONTENT")));
 	}
 }
 
