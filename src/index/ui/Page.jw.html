@@ -1,7 +1,7 @@
 <div jwclass="gg-index-page">
 	<h1 jwid="translate">PROJECT_NAME</h1>
 	<p jwid="translate-html" data-link="link">PROJECT_DESCRIPTION</p>
-	<p jwid="info"><i class="fa fa-bookmark fa-lg" aria-hidden="true"></i> Выбирайте турнир из списка или создайте закладку в своем браузере для быстрого перехода на GG Cup прямо с сайта GoodGame.ru, перетащив следующую ссылку на панель закладок: <a href="javascript:(function(l,m){m=/^\/cup\/(\d+)(\/grid(\/[^\/]*))?/.exec(l.pathname);m?(open('http://ggcup.ru/'+m[1]+(m[3]||''),'_blank')):alert('Перейдите на турнир GoodGame и попробуйте снова.')})(location)">Открыть в GG Cup</a>. И, наоборот, вы всегда можете вернуться на GoodGame.ru, нажав на кнопку в верхнем правом углу сайта.</p>
+	<p jwid="info"><i class="fa fa-bookmark fa-lg" aria-hidden="true"></i> <span jwid="translate">PROJECT_INFO1</span>: <a jwid="bookmark translate" href="javascript:(function(l,m){m=/^\/cup\/(\d+)(\/grid(\/[^\/]*))?/.exec(l.pathname);m?(open('http://ggcup.ru/'+m[1]+(m[3]||''),'_blank')):alert(${message})})(location)">OPEN_IN_GGCUP</a>. <span jwid="translate">PROJECT_INFO2</span></p>
 	<h2>Текущие турниры</h2>
 	<div jwid="started"></div>
 	<h2>Предстоящие турниры</h2>

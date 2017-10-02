@@ -30,7 +30,7 @@ function applyEls(component: Component, jwId: string, getter: (el: JQuery) => st
 	els.each((index, elem) => {
 		index = index;
 		const el = $(elem);
-		setter(el, getter(el).replace(/[A-Z][A-Z_]*/g, (key) => {
+		setter(el, getter(el).replace(/[A-Z][A-Z0-9_]*/g, (key) => {
 			return get(key, (id) => (<any>component)[el.attr("data-" + id)]);
 		}));
 	});

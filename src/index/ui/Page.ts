@@ -27,7 +27,7 @@ import CupList from "../../common/models/CupList";
 import * as CupListService from "../../common/services/CupList";
 import Copyright from "../../common/ui/Copyright";
 import {GOODGAME_HOSTNAME} from "../../constants";
-import {localized} from "../../locale";
+import {default as locale, localized} from "../../locale";
 
 import CupTable from "./CupTable";
 
@@ -39,6 +39,10 @@ export default class Page extends Component {
 
 	constructor(readonly cupList: CupList) {
 		super();
+	}
+
+	protected renderBookmark(el: JQuery) {
+		el.attr("href", el.attr("href").replace("${message}", JSON.stringify(locale("OPEN_AND_TRY_AGAIN"))));
 	}
 
 	protected renderStarted() {
