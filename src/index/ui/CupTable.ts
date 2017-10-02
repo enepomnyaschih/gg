@@ -22,9 +22,11 @@ import {mapDestroyableArray} from "jwidget/mapper/array";
 import template from "jwidget/template";
 
 import CupInfo from "../../common/models/CupInfo";
+import {localized} from "../../locale";
 
 import Cup from "./Cup";
 
+@localized
 @template(require<string>("./CupTable.jw.html"))
 export default class CupTable extends Component {
 	constructor(readonly cups: AbstractArray<CupInfo>, private withDates: boolean = false) {

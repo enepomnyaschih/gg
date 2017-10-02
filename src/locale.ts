@@ -11,24 +11,35 @@ export function current() {
 	return lang;
 }
 
-export function get(key: string) {
-	return data[key] || key;
+export function get(key: string, replacer?: (id: string) => string) {
+	const tpl: string = data[key];
+	if (!tpl) {
+		return key;
+	}
+	return tpl.replace(/\$\{([^\}]+)\}/g, (substr, id) => {
+		substr = substr;
+		return replacer(id);
+	});
 }
 
-function applyEls(els: JQuery, getter: (el: JQuery) => string, setter: (el: JQuery, value: string) => any) {
+function applyEls(component: Component, jwId: string, getter: (el: JQuery) => string, setter: (el: JQuery, value: string) => any) {
+	const els = component.getElement(jwId);
 	if (!els) {
 		return;
 	}
 	els.each((index, elem) => {
 		index = index;
 		const el = $(elem);
-		setter(el, getter(el).replace(/[A-Z][A-Z_]*/g, (key) => get(key)))
+		setter(el, getter(el).replace(/[A-Z][A-Z_]*/g, (key) => {
+			return get(key, (id) => (<any>component)[el.attr("data-" + id)]);
+		}));
 	});
 }
 
 export function apply(component: Component) {
-	applyEls(component.getElement("translate"), (el) => el.text(), (el, value) => el.text(value));
-	applyEls(component.getElement("translate-title"), (el) => el.attr("title"), (el, value) => el.attr("title", value));
+	applyEls(component, "translate", (el) => el.text(), (el, value) => el.text(value));
+	applyEls(component, "translate-html", (el) => el.html(), (el, value) => el.html(value));
+	applyEls(component, "translate-title", (el) => el.attr("title"), (el, value) => el.attr("title", value));
 }
 
 function applyThis() {

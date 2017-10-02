@@ -18,7 +18,9 @@
 
 import Component from "jwidget/Component";
 import template from "jwidget/template";
+import {localized} from "../../locale";
 
+@localized
 @template(require<string>("./Copyright.jw.html"))
 export default class Copyright extends Component {
 	protected renderRange(el: JQuery) {

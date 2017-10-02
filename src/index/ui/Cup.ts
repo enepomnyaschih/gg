@@ -22,6 +22,7 @@ import * as StringUtils from "jwidget/StringUtils";
 
 import CupInfo from "../../common/models/CupInfo";
 import {plural} from "../../common/utils/StringUtils";
+import locale from "../../locale";
 
 @template(require<string>("./Cup.jw.html"))
 export default class Cup extends Component {
@@ -34,7 +35,7 @@ export default class Cup extends Component {
 	}
 
 	protected renderGame(el: JQuery) {
-		el.text(this.cupInfo.gameTitle || "Другая");
+		el.text(this.cupInfo.gameTitle || locale("ANOTHER"));
 	}
 
 	protected renderTitle(el: JQuery) {
@@ -60,6 +61,6 @@ export default class Cup extends Component {
 	}
 
 	protected renderParticipants(el: JQuery) {
-		el.text(plural(this.cupInfo.participantCount, "участник", "участника", "участников"));
+		el.text(plural(this.cupInfo.participantCount, locale("MEMBER"), locale("MEMBER_PL1"), locale("MEMBER_PL2")));
 	}
 }

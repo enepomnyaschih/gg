@@ -26,9 +26,12 @@ import show from "jwidget/ui/show";
 import CupList from "../../common/models/CupList";
 import * as CupListService from "../../common/services/CupList";
 import Copyright from "../../common/ui/Copyright";
+import {GOODGAME_HOSTNAME} from "../../constants";
+import {localized} from "../../locale";
 
 import CupTable from "./CupTable";
 
+@localized
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
 	private pastRequest = this.own(new Property<Destroyable>()).ownValue();
@@ -67,6 +70,10 @@ export default class Page extends Component {
 	protected afterRender() {
 		super.afterRender();
 		this.loadMore();
+	}
+
+	private get link() {
+		return `<a href="${GOODGAME_HOSTNAME}">GoodGame.ru</a>`;
 	}
 
 	private loadMore() {

@@ -1,6 +1,18 @@
 {
 	"ABOUT": "About",
+	"ANOTHER": "Another",
+	"COPYRIGHT": "Egor Nepomnyaschih. All rights reserved.",
+	"CUP_NAME": "Name",
+	"DATE": "Date",
+	"GAME": "Game",
+	"MEMBER": "member",
+	"MEMBER_PL1": "members",
+	"MEMBER_PL2": "members",
+	"MEMBERS": "Members",
 	"OPEN_GG": "Open GoodGame.ru",
+	"PRIZE": "Prize",
+	"PROJECT_DESCRIPTION": "GG Cup is the better tournament grid for ${link} viewers. Keep track of the tournaments without bugs and lags in your browser!",
+	"PROJECT_NAME": "GG Cup tournament grid",
 	"SUPPORT": "Support",
 	"SUPPORT_VIA_YM": "Support GG Cup application via Yandex.Money",
 	"TOURNAMENTS": "Tournaments"
