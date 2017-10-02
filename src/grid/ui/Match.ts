@@ -29,7 +29,9 @@ import EmptyPlayer from "./EmptyPlayer";
 import Player from "./Player";
 
 import {AVATAR_SIZE, PLAYER_BOTTOM_MARGIN, THIRD_PLACE_MATCH_GAP, WINNER_LINE_OFFSET} from "../../constants";
+import {localized} from "../../locale";
 
+@localized
 @template(require<string>("./Match.jw.html"))
 export default class MatchView extends Component {
 	private lineBegin: number;

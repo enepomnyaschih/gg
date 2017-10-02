@@ -21,9 +21,11 @@ import template from "jwidget/template";
 import show from "jwidget/ui/show";
 
 import Column from "../models/Column";
+import {localized} from "../../locale";
 
 import {UNHIDEABLE_COLUMN_COUNT} from "../../constants";
 
+@localized
 @template(require<string>("./Header.jw.html"))
 export default class Header extends Component {
 	constructor(private column: Column) {
