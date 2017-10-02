@@ -27,6 +27,7 @@ import Match from "./Match";
 import Participant from "./Participant";
 
 import {GRID_TYPE_DOUBLE, MATCH_GAP, MATCH_HEIGHT} from "../../constants";
+import locale from "../../locale";
 
 export default class Column extends Class {
 	index: number;
@@ -82,9 +83,9 @@ export default class Column extends Class {
 		const columnsRemaining = this.cup.grid.getLength() - this.index -
 			(this.cup.gridType === GRID_TYPE_DOUBLE && this.cup.gridIndex === 0 ? 1 : 0)
 		switch (columnsRemaining) {
-			case 0: return "Суперфинал";
-			case 1: return "Финал";
-			case 2: return "Полуфинал";
+			case 0: return locale("GRAND_FINAL");
+			case 1: return locale("FINAL");
+			case 2: return locale("SEMIFINAL");
 			default: return "1/" + this.matches.getLength();
 		}
 	}
