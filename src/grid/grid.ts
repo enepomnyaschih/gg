@@ -23,6 +23,7 @@ import Application from "../common/ui/Application";
 import * as CupService from "./services/Cup";
 import Page from "./ui/Page";
 import MessagePanel from "../lib/ui/MessagePanel";
+import locale from "../locale";
 
 import {GRID_COUNTS, REFRESH_INTERVAL} from "../constants";
 
@@ -31,8 +32,7 @@ require("./grid.styl");
 $(function() {
 	const matches = /^\/(\d+)(\/[^\/]*)?/.exec(window.location.pathname);
 	if (!matches) {
-		const text = "Не указан ID турнира. Пожалуйста, перейдите на турнир " +
-			"GoodGame и попробуйте применить букмарклет турнирной сетки.";
+		const text = locale("ERROR_INVALID_CUP_ID");
 		new MessagePanel(text, {cls: "j-error j-small"}).renderTo("body");
 		return;
 	}
@@ -41,9 +41,10 @@ $(function() {
 	CupService.get(cupId, gridIndex).then((cup) => {
 		(<any>window).cup = cup;
 		if (!GRID_COUNTS.hasOwnProperty(String(cup.gridType))) {
-			const text = "Похоже, сетка этого турнира имеет неподдерживаемый формат. " +
-				"Этот клиент пока поддерживает только Single Elimination и Double Elimination. " +
-				'Если турнир проходит в одном из этих форматов, но вы видите эту ошибку, пожалуйста, <a href="https://github.com/enepomnyaschih/gg/issues">сообщите о ней команде проекта</a>.';
+			const text = locale("ERROR_INVALID_GRID_TYPE", {
+				link: '<a href="https://github.com/enepomnyaschih/gg/issues">',
+				endlink: '</a>'
+			});
 			new MessagePanel(text, {cls: "j-error j-small", html: true}).renderTo("body");
 			return;
 		}
@@ -67,9 +68,10 @@ $(function() {
 			});
 		}, REFRESH_INTERVAL);
 	}, () => {
-		const text = "Не удалось загрузить и прочитать данные турнира. " +
-			"Возможно, турнир с таким ID не существует или он не проходит в формате Single Elimination. " +
-			'Если это не так, пожалуйста, <a href="https://github.com/enepomnyaschih/gg/issues">сообщите об ошибке команде проекта</a>.';
+		const text = locale("ERROR_UNABLE_TO_LOAD", {
+			link: '<a href="https://github.com/enepomnyaschih/gg/issues">',
+			endlink: '</a>'
+		});
 		new MessagePanel(text, {cls: "j-error j-small", html: true}).renderTo("body");
 	});
 });

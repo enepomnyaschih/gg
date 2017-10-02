@@ -1,4 +1,5 @@
 import Component from "jwidget/Component";
+import Dictionary from "jwidget/Dictionary";
 import {combine} from "./common/utils/FunctionUtils";
 
 const lang: string = localStorage["locale"] || "ru";
@@ -11,14 +12,19 @@ export function current() {
 	return lang;
 }
 
-export function get(key: string, replacer?: (id: string) => string) {
+export function get(key: string, replaces?: Dictionary<string>): string;
+export function get(key: string, replacer?: (id: string) => string): string;
+export function get(key: string, replaces?: any): string {
 	const tpl: string = data[key];
 	if (!tpl) {
 		return key;
 	}
-	return tpl.replace(/\$\{([^\}]+)\}/g, (substr, id) => {
+	return tpl.replace(/\$\{([^\}]+)\}/g, (typeof replaces === "function") ? (substr, id) => {
 		substr = substr;
-		return replacer(id);
+		return replaces(id);
+	} : (substr, id) => {
+		substr = substr;
+		return replaces[id];
 	});
 }
 
