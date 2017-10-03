@@ -1,18 +1,18 @@
 <div jwclass="gg-about-page">
 	<div jwid="logo">
 		<div jwid="container">
-			<h1>Турнирная сетка GG Cup</h1>
-			<h2>О проекте и причинах его появления</h2>
-			<p>Проект GG Cup - домашняя поделка <a href="https://goodgame.ru/channel/Egor_N/">Егора Н.</a>, одного из зрителей <a href="https://goodgame.ru">GoodGame.ru</a>. Это клиент, созданный на базе открытого API сайта GoodGame.ru с той целью, чтобы сделать просмотр турниров быстрее и удобнее оригинала. К моменту старта проекта прошло несколько месяцев со дня массового обновления UI сайта GoodGame.ru, которое, помимо ряда новых фич, принесло тормоза в работе сайта и <a jwid="expander" data-target="expanded-1" href="#">серьезные баги</a>.</p>
+			<h1 jwid="translate">PROJECT_NAME</h1>
+			<h2 jwid="translate">ABOUT_TITLE</h2>
+			<p jwid="translate-html">ABOUT_TEXT1</p>
 			<ol jwid="expanded-1">
-				<li>Горизонтальный скроллинг вы не увидите, пока не докрутите внешний скроллбар до низу. То есть горизонтально скроллить сетку, опять же, очень тяжело. И если в Google Chrome вы хотя бы можете использовать горизонтальную прокрутку колесиком мыши, зажав клавишу Shift, то в Mozilla Firefox все очень печально - там это не работает.</li>
-				<li>Заголовки столбцов сетки пропадают при вертикальной прокрутке. Пользователь теряется в сетке, не понимая, какой раунд турнира отображается в каждом столбце сетки.</li>
-				<li>Сетка очень сильно тормозит на слабых (ну как слабых... с Intel i5 процессором) машинах и мобильных устройствах. Жуткие пролаги при прокрутке (около 4 FPS).</li>
+				<li jwid="translate">ABOUT_BUG1</li>
+				<li jwid="translate">ABOUT_BUG2</li>
+				<li jwid="translate">ABOUT_BUG3</li>
 			</ol>
-			<p>Этот проект был запущен с целью создать более удобную сетку. Тем не менее, учитывая, что разработчикам GoodGame.ru спустя длительное время все-таки удалось исправить большинство багов, а также из-за сложностей коммуникации с владельцами GoodGame.ru, сейчас разработка приостановлена на неопределенное время.</p>
-			<h2>Планы развития проекта</h2>
-			<p>Развивать проект планируется в несколько этапов:</p>
-			<ol>
+			<p jwid="translate">ABOUT_TEXT2</p>
+			<h2 jwid="ru">Планы развития проекта</h2>
+			<p jwid="ru">Развивать проект планируется в несколько этапов:</p>
+			<ol jwid="ru">
 				<li>Реализовать все главные (MVP) возможности интерфейса зрителя, которые есть на <a href="https://goodgame.ru">GoodGame.ru</a> (выполнено на 80%).</li>
 				<li>Добавить задуманные киллер-фичи:<ul>
 					<li>выравнивание сетки по игроку (выполнено, но будет пересмотрено);</li>
@@ -35,10 +35,10 @@
 				<li>Интегрироваться с прочими API для проведения турниров (если возникнет потребность).</li>
 				<li>Реализовать свой независимый API для проведения турниров (если возникнет потребность), полностью отвязавшись от <a href="https://goodgame.ru">GoodGame.ru</a>.</li>
 			</ol>
-			<h2>Техническая подоплека</h2>
-			<p>Лучше всех охарактеризовал этот проект один из моих знакомых: это <b>религиозный проект</b>.</p>
-			<p>Оригинальная сетка <a href="https://goodgame.ru">GoodGame.ru</a> сделана на фреймворке <a href="https://angularjs.org/">Angular</a>. При поддержке Google Angular стал очень модным фреймворком. Приложения уровня Hello World пишутся на нем за считанные минуты. Порог вхождения очень низок. Но, если присмотреться получше, можно увидеть, что Angular имеет ряд значительных <a jwid="expander" data-target="expanded-2" href="#">недостатков</a>.</p>
-			<ol jwid="expanded-2">
+			<h2 jwid="ru">Техническая подоплека</h2>
+			<p jwid="ru">Лучше всех охарактеризовал этот проект один из моих знакомых: это <b>религиозный проект</b>.</p>
+			<p jwid="ru">Оригинальная сетка <a href="https://goodgame.ru">GoodGame.ru</a> сделана на фреймворке <a href="https://angularjs.org/">Angular</a>. При поддержке Google Angular стал очень модным фреймворком. Приложения уровня Hello World пишутся на нем за считанные минуты. Порог вхождения очень низок. Но, если присмотреться получше, можно увидеть, что Angular имеет ряд значительных <a class="gg-expander" data-target="expanded-2" href="#">недостатков</a>.</p>
+			<ol jwid="ru expanded-2">
 				<li>Глобальный пул watcher'ов, что порождает тормоза везде и во всем, как только приложение становится чуть больше, чем вам позволяет Angular.</li>
 				<li>Отсутствие прямого доступа к DOM. Чтобы применить любой jQuery-плагин, приходится создавать сложную директиву.</li>
 				<li>Dirty checks. Нужно быть очень осторожным, чтобы не усложнить digest-цикл лишними сложными проверками.</li>
@@ -47,22 +47,22 @@
 				<li>Слишком большая уникальность. Забудьте о паттернах ООП, методах рефакторинга, признаках чистого кода, которые применимы к большинству императивных языков программирования - с Angular, это все теряет свою ценность. Angular навязывает свой собственный стиль кодирования, и все хорошие практики и паттерны приходится изобретать с нуля.</li>
 				<li>Отсутствие внятных инструкций и документации. За первые 3 дня работы с Angular я нашел 12 (!) ошибок в руководстве для начинающих.</li>
 			</ol>
-			<p>Я front end разработчик с 9-летним стажем, и, в том числе, имею опыт программирования на Angular. Но, используя иной фреймворк, мне удалось реализовать почти весь тот же самый функционал, что есть в оригинальной сетке, всего за 15 часов работы, которые <a href="https://www.youtube.com/watch?v=bBfZvVFO740&list=PLI_N-q_21uSNHxO6rTnuHjqi31_t_y2UR">транслировались в прямом эфире</a>. Я показал, что вполне рабочую сетку можно написать с использованием моего собственного фреймворка <a href="http://enepomnyaschih.github.io/jwidget/1.4/index.html#!/guide/ruhome">jWidget</a> всего за 5 часов работы! А за 15 часов можно еще накрутить ряд прикольных фич и довести проект до стабильного состояния. jWidget - это не огромный фреймворк, спонсируемый крупнейшей IT-корпорацией мира, а всего лишь домашняя поделка - и даже он во всем превосходит Angular. Это демонстрирует то, насколько Angular плох.</p>
-			<h2>Пользовательское соглашение</h2>
-			<p>Проект "Турнирная сетка GG Cup" распространяется под двумя лицензиями: GPL v3 и коммерческая лицензия.</p>
-			<p>В общих чертах, смысл лицензии GPL v3 сводится к следующему: <i>вы можете бесплатно использовать этот проект для себя, перераспространять его вы можете только под той же самой лицензией, переиспользовать его вы можете только в проектах с той же самой лицензией, автор никаких гарантий не дает и никакой ответственности не несет, исходный код открыт, о любых изменениях в исходном коде вы должны сообщать автору.</i> Более подробно ознакомиться с лицензией вы можете на <a href="https://www.gnu.org/licenses/quick-guide-gplv3.html">официальном сайте GNU</a>. Там же вы можете получить копию лицензии.</p>
-			<p>Если эта лицензия вас не устраивает (например, если вы хотите использовать эту сетку в своем коммерческом проекте, распространяемым под другой лицензией), то автор готов заключить с вами персональный контракт, условия которого будут оговорены индивидуально.</p>
-			<h2>Контактные данные и ссылки</h2>
+			<p jwid="ru">Я front end разработчик с 9-летним стажем, и, в том числе, имею опыт программирования на Angular. Но, используя иной фреймворк, мне удалось реализовать почти весь тот же самый функционал, что есть в оригинальной сетке, всего за 15 часов работы, которые <a href="https://www.youtube.com/watch?v=bBfZvVFO740&list=PLI_N-q_21uSNHxO6rTnuHjqi31_t_y2UR">транслировались в прямом эфире</a>. Я показал, что вполне рабочую сетку можно написать с использованием моего собственного фреймворка <a href="http://enepomnyaschih.github.io/jwidget/1.4/index.html#!/guide/ruhome">jWidget</a> всего за 5 часов работы! А за 15 часов можно еще накрутить ряд прикольных фич и довести проект до стабильного состояния. jWidget - это не огромный фреймворк, спонсируемый крупнейшей IT-корпорацией мира, а всего лишь домашняя поделка - и даже он во всем превосходит Angular. Это демонстрирует то, насколько Angular плох.</p>
+			<h2 jwid="translate">TERMS_OF_USE</h2>
+			<p jwid="translate">TERMS_OF_USE1</p>
+			<p jwid="translate-html">TERMS_OF_USE2</p>
+			<p jwid="translate">TERMS_OF_USE3</p>
+			<h2 jwid="translate">CONTACT_INFO</h2>
 			<ul>
-				<li>Автор: Егор Непомнящих</li>
-				<li>Почта: enepomnyaschih at gmail dot com</li>
-				<li><a href="https://goodgame.ru/channel/Egor_N/">Мой канал на GoodGame.ru</a></li>
-				<li><a href="https://www.youtube.com/channel/UCPpxmGzAjNrQvAgSs1qhkhg">Мой канал на Youtube</a></li>
-				<li><a href="https://www.youtube.com/watch?v=bBfZvVFO740&list=PLI_N-q_21uSNHxO6rTnuHjqi31_t_y2UR">Анонс и запись первых 15 часов разработки (Youtube)</a></li>
-				<li><a href="https://github.com/enepomnyaschih/gg/">Исходный код программы (GitHub)</a></li>
-				<li><a href="https://github.com/enepomnyaschih/gg/issues">Замечания и пожелания (GitHub)</a></li>
-				<li><a href="https://github.com/enepomnyaschih/jwidget/">Исходный код jWidget (GitHub)</a></li>
-				<li><a href="http://enepomnyaschih.github.io/jwidget/1.4/index.html#!/guide/ruhome">Документация jWidget</a></li>
+				<li jwid="translate">CONTACT_INFO_AUTHOR</li>
+				<li>Email: enepomnyaschih at gmail dot com</li>
+				<li><a jwid="translate" href="https://goodgame.ru/channel/Egor_N/">CONTACT_INFO_GG</a></li>
+				<li><a jwid="translate" href="https://www.youtube.com/channel/UCPpxmGzAjNrQvAgSs1qhkhg">CONTACT_INFO_YT</a></li>
+				<li><a jwid="translate" href="https://www.youtube.com/watch?v=bBfZvVFO740&list=PLI_N-q_21uSNHxO6rTnuHjqi31_t_y2UR">CONTACT_INFO_VIDEO (Youtube)</a></li>
+				<li><a jwid="translate" href="https://github.com/enepomnyaschih/gg/">CONTACT_INFO_SOURCE (GitHub)</a></li>
+				<li><a jwid="translate" href="https://github.com/enepomnyaschih/gg/issues">CONTACT_INFO_ISSUES (GitHub)</a></li>
+				<li><a jwid="translate" href="https://github.com/enepomnyaschih/jwidget/">CONTACT_INFO_JWIDGET (GitHub)</a></li>
+				<li><a jwid="translate" href="http://enepomnyaschih.github.io/jwidget/1.4/index.html#!/guide/ruhome">CONTACT_INFO_DOC</a></li>
 			</ul>
 			<div jwid="copyright"></div>
 		</div>

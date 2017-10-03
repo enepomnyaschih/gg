@@ -37,12 +37,15 @@ function applyEls(component: Component, jwId: string, getter: (el: JQuery) => st
 		index = index;
 		const el = $(elem);
 		setter(el, getter(el).replace(/[A-Z][A-Z0-9_]*/g, (key) => {
-			return get(key, (id) => (<any>component)[el.attr("data-" + id)]);
+			return get(key, (id) => (<any>component)[id]);
 		}));
 	});
 }
 
 export function apply(component: Component) {
+	if (lang !== "ru") {
+		component.removeElement("ru");
+	}
 	applyEls(component, "translate", (el) => el.text(), (el, value) => el.text(value));
 	applyEls(component, "translate-html", (el) => el.html(), (el, value) => el.html(value));
 	applyEls(component, "translate-title", (el) => el.attr("title"), (el, value) => el.attr("title", value));

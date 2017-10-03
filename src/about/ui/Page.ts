@@ -23,14 +23,22 @@ import show from "jwidget/ui/show";
 
 import Copyright from "../../common/ui/Copyright";
 
+import {localized} from "../../locale";
+
+@localized
 @template(require<string>("./Page.jw.html"))
 export default class Page extends Component {
-	protected renderExpander(el: JQuery) {
-		el.each((index, element) => {
+	protected renderCopyright() {
+		return this.own(new Copyright());
+	}
+
+	protected afterRender() {
+		super.afterRender();
+		this.el.find(".gg-expander").each((index, element) => {
 			index = index;
 			const el = $(element);
 			const expanded = new Property(false);
-			show(this.getElement(el.data("target")), expanded);
+			show(this.getElement(el.attr("data-target")), expanded);
 			el.click((e) => {
 				e.preventDefault();
 				expanded.set(!expanded.get());
@@ -38,7 +46,23 @@ export default class Page extends Component {
 		});
 	}
 
-	protected renderCopyright() {
-		return this.own(new Copyright());
+	private get author() {
+		return '<a href="https://goodgame.ru/channel/Egor_N/">';
+	}
+
+	private get gg() {
+		return '<a href="https://goodgame.ru">';
+	}
+
+	private get gnu() {
+		return '<a href="https://www.gnu.org/licenses/quick-guide-gplv3.html">';
+	}
+
+	private get expander1() {
+		return '<a class="gg-expander" data-target="expanded-1" href="#">';
+	}
+
+	private get endlink() {
+		return '</a>';
 	}
 }
